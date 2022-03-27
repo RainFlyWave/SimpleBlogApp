@@ -1,5 +1,5 @@
 """
-ASGI config for blog_base project.
+ASGI config for djangodockertest project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog_base.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangodockertest.settings')
 
 application = get_asgi_application()
