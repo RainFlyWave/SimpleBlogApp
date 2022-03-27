@@ -1,6 +1,6 @@
 # Simple Blog App
  This repository is made for testing and getting familiar with docker and django. 
- I want to get familiar with some of the technologies and this is perfect place to see my process of thought. 
+ I want to get familiar with some of the technologies and this is perfect place to see my process of thought, make some observations and get better.
  
  
  # Tech Stack
