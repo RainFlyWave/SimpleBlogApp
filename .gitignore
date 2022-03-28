@@ -2,3 +2,4 @@
 app/
 db_data/
 pgadmin_data/
+db.sqlite3
