@@ -2,6 +2,7 @@ version: "3.9"
 
 volumes:
   db_data:
+  pgadmin_data:
 
 services:
   db:
@@ -26,6 +27,8 @@ services:
       PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
     ports:
       - 2137:80
       - 443:443
