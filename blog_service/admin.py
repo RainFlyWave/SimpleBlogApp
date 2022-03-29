@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Entry
+from .models import Entry, AllUsers
 
 @admin.register(Entry)
 class WpisAdmin(admin.ModelAdmin):
@@ -18,4 +18,19 @@ class WpisAdmin(admin.ModelAdmin):
         ordering = ('date_created',)
     
     show_entry.short_description = 'Entry <15'
+    date_serialization.short_description = 'Date Created'
+
+
+@admin.register(AllUsers)
+class AllUsersAdmin(admin.ModelAdmin):
+    list_display = ('user_name','user_mail', 'date_serialization', )
+    list_filter = ('date_created',)
+
+    def date_serialization(self,obj):
+        '''Format DateTimeField into H:M:S, D/M/Y format'''
+        return f'{obj.date_created.strftime("%H:%M:%S, %d/%m/%Y")}'
+
+    class Meta:
+        ordering = ('date_created',)
+    
     date_serialization.short_description = 'Date Created'
