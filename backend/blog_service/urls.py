@@ -4,11 +4,11 @@ from rest_framework import routers
 from blog_service.views import EntryViewSet
 
 router = routers.DefaultRouter()
-router.register(r'entry', EntryViewSet)
+router.register(r'entry', EntryViewSet, basename="entries")
 
 
 urlpatterns = [
-    
+
     path('', include(router.urls)),
     path('register/', RegisterView.as_view()),
     path('login/', LoginView.as_view()),
