@@ -1,0 +1,44 @@
+.main-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  background-color: gray;
+}
+
+.main-wrapper .submit-button {
+  margin: .9rem;
+}
+
+.main-wrapper svg:first-child {
+  position: absolute;
+  top: 0;
+}
+
+.main-wrapper svg:last-child {
+  position: absolute;
+  bottom: 0;
+}
+
+.main-login-div {
+  margin: auto;
+  width: 40rem;
+  background-color: #c2c1c1;
+  padding: 5rem 4rem;
+  border-radius: 10%;
+  z-index: 1;
+}
+
+.main-login-div .input-field {
+  margin: .5rem;
+}
+
+.main-login-div h1 {
+  margin: 10px auto;
+  text-align: center;
+}
+/*# sourceMappingURL=Login.css.map */
