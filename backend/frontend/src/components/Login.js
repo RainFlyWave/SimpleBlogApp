@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.css';
+
 
 
 
