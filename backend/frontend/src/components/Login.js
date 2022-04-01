@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
 
-
+import axios from 'axios';
 
 
 
@@ -9,22 +9,43 @@ import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
 export const Login = () => {
 
 
-    const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    const [isLoading, setisLoading] = useState(false)
+    const [fetchedData, setFetchedData] = useState([]);
+    const [usernameData, setUsernameData] = useState('');
+    const [passwordData, setPassworData] = useState('');
 
-        setValidated(true);
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const loginData = {
+            'username': usernameData,
+            'password': passwordData
+        };
+
+        setisLoading(true);
+        await axios
+            .post('http://127.0.0.1:8000/api/login/', loginData, {
+            })
+            .then(({ data }) => {
+                console.log(data);
+                setFetchedData(data);
+                setisLoading(false);
+            }).catch(error => {
+                console.error(error)
+                setisLoading(false);
+            });
+
+
 
 
 
     };
 
 
+
+    // If user exists, reidrect to entry page
+    // If user doesnt exist, throw exception
     return (
         <div className='main-wrapper'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="0.3" d="M0,224L26.7,208C53.3,192,107,160,160,170.7C213.3,181,267,235,320,245.3C373.3,256,427,224,480,202.7C533.3,181,587,171,640,154.7C693.3,139,747,117,800,101.3C853.3,85,907,75,960,90.7C1013.3,107,1067,149,1120,176C1173.3,203,1227,213,1280,229.3C1333.3,245,1387,267,1413,277.3L1440,288L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
@@ -41,6 +62,8 @@ export const Login = () => {
                                 placeholder="Username"
                                 aria-describedby="inputGroupPrepend"
                                 required
+                                onChange={e => setUsernameData(e.target.value)}
+                                disabled={isLoading}
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a username.
@@ -48,7 +71,7 @@ export const Login = () => {
                         </InputGroup>
                     </Form.Group>
 
-                    <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomUsername">
+                    <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomPassword">
                         <Form.Label>Password</Form.Label>
                         <InputGroup hasValidation>
                             <Form.Control
@@ -56,6 +79,8 @@ export const Login = () => {
                                 placeholder="Password"
                                 aria-describedby="inputGroupPrepend"
                                 required
+                                onChange={e => setPassworData(e.target.value)}
+                                disabled={isLoading}
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a username.
@@ -65,7 +90,7 @@ export const Login = () => {
 
 
 
-                    <Button variant="primary" type="submit" className='input-field' onClick={handleSubmit}>
+                    <Button disabled={isLoading} variant="primary" type="submit" className='input-field' onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Form>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import 'bootstrap/dist/css/bootstrap.css';
-require('./../../static/css/Login.css');
 import { Introduction } from "./Introduction";
 import { Login } from "./Login";
 import {
@@ -9,6 +7,10 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+
+require('bootstrap/dist/css/bootstrap.css');
+require('./../../static/css/Login.css');
+require('./../../static/css/Introduction.css');
 
 
 

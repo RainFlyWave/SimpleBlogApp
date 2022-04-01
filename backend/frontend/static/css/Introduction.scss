@@ -1,0 +1,40 @@
+.introduction-main {
+    nav {
+        display: flex;
+        flex-direction: row;
+        background-color: red;
+        align-items: center;
+        justify-content: space-around;
+        padding: 1rem;
+
+
+        h1 {
+            margin: auto;
+            flex: 2;
+        }
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 3;
+
+        li {
+            margin: 0 0.7rem;
+        }
+    }
+}
+
+.introduction-wrapper {
+    background-color: blue;
+    color: gray;
+
+    .introduction-header {
+        width: 60rem;
+        margin: auto;
+    }
+}
