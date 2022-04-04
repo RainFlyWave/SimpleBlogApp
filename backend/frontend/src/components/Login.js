@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
-
+import { useNavigate, Navigate } from 'react-router-dom'
+import Cookies from 'js-cookie';
 import axios from 'axios';
 
 
@@ -14,6 +15,13 @@ export const Login = () => {
     const [fetchedData, setFetchedData] = useState([]);
     const [usernameData, setUsernameData] = useState('');
     const [passwordData, setPassworData] = useState('');
+    const navigate = useNavigate();
+
+
+    const isAuth = Cookies.get('isAuth');
+    if (isAuth == 'true') {
+        return <Navigate to='/' />
+    }
 
 
     async function handleSubmit(e) {
@@ -31,6 +39,7 @@ export const Login = () => {
                 console.log(data);
                 setFetchedData(data);
                 setisLoading(false);
+                navigate('/');
             }).catch(error => {
                 console.error(error)
                 setisLoading(false);

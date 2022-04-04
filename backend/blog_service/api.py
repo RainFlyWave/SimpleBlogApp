@@ -52,8 +52,10 @@ class LoginView(APIView):
 
         # Create HttpOnly cookie with token
         response.set_cookie(key='token', value=token, httponly=True)
+        response.set_cookie(key='isAuth', value='true', httponly=False)
         response.data = {
-            'token': token
+            'token': token,
+            
         }
 
         return response
@@ -92,6 +94,7 @@ class LogoutView(APIView):
         #   If token cookie exists, delete it and send a message    
         response = Response()
         response.delete_cookie('token')
+        response.delete_cookie('isAuth')
         response.data = {
             'message': 'So long, my friend...',
   
