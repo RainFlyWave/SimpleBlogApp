@@ -12,15 +12,14 @@ export const Logout = () => {
         axios.post('http://127.0.0.1:8000/api/logout/')
             .then(({ data }) => {
                 console.log(data);
-                isAuth = 'false';
-                return <Navigate to="/" />
+                Cookies.set('isAuth', 'false');
             })
-    }
-    else {
-        return <Navigate to="/login" />
+        setTimeout(() => {
+            return (<div>logout</div>)
+        }, 3000);
+        return <Navigate to="/" />
     }
 
-    return (
-        <div>Logout</div>
-    )
+
+    return <Navigate to="/" />
 }

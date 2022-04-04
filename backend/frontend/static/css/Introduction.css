@@ -6,13 +6,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: red;
+  background-color: #7d7d7d;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   padding: 1rem;
+}
+
+.introduction-main nav svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .introduction-main nav h1 {
@@ -47,13 +54,61 @@
   margin: 0 0.7rem;
 }
 
+.introduction-background {
+  background-color: #cdcdcd;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -2;
+}
+
 .introduction-wrapper {
-  background-color: blue;
-  color: gray;
+  color: black;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .introduction-wrapper .introduction-header {
-  width: 60rem;
   margin: auto;
+  min-height: 60vh;
+  width: 40rem;
+  background-color: white;
+  z-index: 0;
+  border-radius: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.introduction-wrapper .introduction-maintext {
+  padding: 3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.introduction-wrapper .introduction-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=Introduction.css.map */

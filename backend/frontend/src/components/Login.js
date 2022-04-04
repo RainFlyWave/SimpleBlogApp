@@ -39,7 +39,9 @@ export const Login = () => {
                 console.log(data);
                 setFetchedData(data);
                 setisLoading(false);
+                // const isAuth = Cookies.set('isAuth', true);
                 navigate('/');
+
             }).catch(error => {
                 console.error(error)
                 setisLoading(false);
