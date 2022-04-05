@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { render } from "react-dom";
 import { Introduction } from "./Introduction";
 import { Login } from "./Login";
@@ -15,8 +15,9 @@ require('./../../static/css/Login.css');
 require('./../../static/css/Introduction.css');
 
 
-
 export const App = () => {
+
+
     return (
         <BrowserRouter>
             <Routes>
