@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 
@@ -10,6 +11,8 @@ import axios from 'axios';
 export const Login = () => {
 
 
+    const [loggedIn, hasLoggedIn] = useContext(AuthContext);
+    const isAuth = loggedIn;
 
     const [isLoading, setisLoading] = useState(false)
     const [fetchedData, setFetchedData] = useState([]);
@@ -18,8 +21,8 @@ export const Login = () => {
     const navigate = useNavigate();
 
 
-    const isAuth = Cookies.get('isAuth');
-    if (isAuth == 'true') {
+    // const isAuth = Cookies.get('isAuth');
+    if (isAuth == true) {
         return <Navigate to='/' />
     }
 
@@ -39,6 +42,7 @@ export const Login = () => {
                 console.log(data);
                 setFetchedData(data);
                 setisLoading(false);
+                hasLoggedIn(true);
                 // const isAuth = Cookies.set('isAuth', true);
                 navigate('/');
 

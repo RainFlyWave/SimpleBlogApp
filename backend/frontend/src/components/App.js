@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useState } from "react";
 import { render } from "react-dom";
 import { Introduction } from "./Introduction";
 import { Login } from "./Login";
@@ -13,19 +13,23 @@ import { Logout } from "./Logout";
 require('bootstrap/dist/css/bootstrap.css');
 require('./../../static/css/Login.css');
 require('./../../static/css/Introduction.css');
+import { AuthContext } from "../contexts/AuthContext";
 
 
 export const App = () => {
 
+    const [loggedIn, hasLoggedIn] = useState(false);
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Introduction />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/logout" element={<Logout />} />
-            </Routes>
-        </BrowserRouter>
+        <AuthContext.Provider value={[loggedIn, hasLoggedIn]}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Introduction />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
+                </Routes>
+            </BrowserRouter>
+        </AuthContext.Provider>
     )
 }
 
