@@ -6,26 +6,19 @@ import axios from 'axios';
 import { NotLoggedIn } from './NotLoggedIn';
 import { LoggedIn } from './LoggedIn';
 import { IntroductionCards } from './IntroductionCards';
-import { AuthContext } from '../contexts/AuthContext';
+import { authenticate } from '../contexts/Authenticate';
+
 
 
 export const Introduction = () => {
 
     const [userData, setUserData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [loggedIn, hasLoggedIn] = useContext(AuthContext);
     let isfetched = false;
 
 
-    // function authenticate(cookiez) {
-    //     if (cookiez == 'true') {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    const isAuth = authenticate(Cookies.get('isAuth'));
 
-    // const isAuth = authenticate(Cookies.get('isAuth'));
-    const isAuth = loggedIn;
 
     const kurwa = async () => {
         await axios.get('http://127.0.0.1:8000/api/user/')

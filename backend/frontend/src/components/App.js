@@ -13,7 +13,7 @@ import { Logout } from "./Logout";
 require('bootstrap/dist/css/bootstrap.css');
 require('./../../static/css/Login.css');
 require('./../../static/css/Introduction.css');
-import { AuthContext } from "../contexts/AuthContext";
+
 
 
 export const App = () => {
@@ -21,15 +21,13 @@ export const App = () => {
     const [loggedIn, hasLoggedIn] = useState(false);
 
     return (
-        <AuthContext.Provider value={[loggedIn, hasLoggedIn]}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Introduction />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/logout" element={<Logout />} />
-                </Routes>
-            </BrowserRouter>
-        </AuthContext.Provider>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Introduction />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 

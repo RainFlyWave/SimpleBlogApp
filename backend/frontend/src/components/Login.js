@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, setTimeout } from 'react'
 import { Form, Button, Badge, InputGroup, Col } from 'react-bootstrap'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { AuthContext } from '../contexts/AuthContext';
+import { authenticate } from '../contexts/Authenticate';
 
 
 
@@ -11,17 +11,15 @@ import { AuthContext } from '../contexts/AuthContext';
 export const Login = () => {
 
 
-    const [loggedIn, hasLoggedIn] = useContext(AuthContext);
-    const isAuth = loggedIn;
+
 
     const [isLoading, setisLoading] = useState(false)
-    const [fetchedData, setFetchedData] = useState([]);
     const [usernameData, setUsernameData] = useState('');
     const [passwordData, setPassworData] = useState('');
     const navigate = useNavigate();
 
 
-    // const isAuth = Cookies.get('isAuth');
+    const isAuth = authenticate(Cookies.get('isAuth'));
     if (isAuth == true) {
         return <Navigate to='/' />
     }
@@ -40,18 +38,15 @@ export const Login = () => {
             })
             .then(({ data }) => {
                 console.log(data);
-                setFetchedData(data);
+
                 setisLoading(false);
-                hasLoggedIn(true);
-                // const isAuth = Cookies.set('isAuth', true);
-                navigate('/');
+                Cookies.set('isAuth', true);
+                navigate('/')
 
             }).catch(error => {
                 console.error(error)
                 setisLoading(false);
             });
-
-
 
 
 

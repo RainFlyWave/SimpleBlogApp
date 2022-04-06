@@ -1,29 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { authenticate } from '../contexts/Authenticate';
 
 
 export const Logout = () => {
-    // let isAuth = Cookies.get('isAuth');
-    const [loggedIn, hasLoggedIn] = useContext(AuthContext);
-    const isAuth = loggedIn;
     const navigate = useNavigate();
-    if (isAuth == true) {
-        axios.post('http://127.0.0.1:8000/api/logout/')
-            .then(({ data }) => {
-                console.log(data);
-                // Cookies.set('isAuth', 'false');
-                hasLoggedIn(false);
+    let isAuth = authenticate(Cookies.get('isAuth'));
 
-            })
-        setTimeout(() => {
-            return (<div>logout</div>)
-        }, 3000);
-        return <Navigate to="/" />
-    }
+    useEffect(() => {
+        if (isAuth == true) {
+            axios.post('http://127.0.0.1:8000/api/logout/')
+                .then(({ data }) => {
+                    console.log(data);
+                    Cookies.set('isAuth', 'false');
+                    setTimeout(() => {
+                        navigate('/');
+                    }, 2000)
+                })
+        }
+        else {
+            navigate('/');
+        }
+    }, [])
 
 
-    return <Navigate to="/" />
+    return (<div>Logging Out...</div>)
 }
