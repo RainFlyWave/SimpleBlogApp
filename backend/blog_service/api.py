@@ -1,9 +1,12 @@
 
+import json
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from blog_service.serializers import UserSerializer
+from rest_framework.generics import ListAPIView
+from blog_service.serializers import UserSerializer, EntrySerializer
 from django.contrib.auth.models import User
 from rest_framework.exceptions import AuthenticationFailed
+from blog_service.models import Entry
 import jwt
 import datetime
 import os
@@ -79,6 +82,7 @@ class UserView(APIView):
 
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
+        print(type(user))
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
@@ -101,3 +105,28 @@ class LogoutView(APIView):
         }
 
         return response
+
+
+#   View made for lsiting entries related to the author
+class EntriesView(ListAPIView):
+    serializer_class = EntrySerializer
+
+    def get_queryset(self):
+         #   Get a token cookie from cookies
+        token = self.request.COOKIES.get('token')
+
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   If everything is allright, send appropriate response
+        user = User.objects.get(id=payload['id'])
+        return Entry.objects.filter(author_name=user)
+
+     

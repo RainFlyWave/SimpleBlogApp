@@ -72,7 +72,7 @@ export const Introduction = () => {
                         {isAuth ? <LoggedIn /> : <NotLoggedIn />}
                     </div>
 
-                    {isAuth ? <IntroductionCards /> : ''}
+
 
                 </div>
 
