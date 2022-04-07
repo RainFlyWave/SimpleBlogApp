@@ -14,7 +14,7 @@ export const Logout = () => {
             axios.post('http://127.0.0.1:8000/api/logout/')
                 .then(({ data }) => {
                     console.log(data);
-                    Cookies.set('isAuth', 'false');
+                    Cookies.set('isAuth', 'false', { expiries: 1 });
                     setTimeout(() => {
                         navigate('/');
                     }, 2000)

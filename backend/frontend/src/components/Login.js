@@ -40,7 +40,7 @@ export const Login = () => {
                 console.log(data);
 
                 setisLoading(false);
-                Cookies.set('isAuth', true);
+                Cookies.set('isAuth', true, { expires: 1 });
                 navigate('/')
 
             }).catch(error => {

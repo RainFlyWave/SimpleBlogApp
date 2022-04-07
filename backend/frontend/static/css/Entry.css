@@ -1,0 +1,44 @@
+.entry-list {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 50vh;
+  position: relative;
+  overflow-wrap: break-word;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.entry-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 35rem !important;
+  margin: 0.6rem;
+}
+
+.entry-wrapper .entry-text {
+  margin: 0.4rem;
+}
+
+.entry-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0.4rem;
+}
+/*# sourceMappingURL=Entry.css.map */

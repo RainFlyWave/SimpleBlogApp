@@ -1,0 +1,36 @@
+.entry-list {
+    display: flex !important;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 50vh;
+    position: relative;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+    -webkit-flex-flow: column;
+
+
+}
+
+
+
+.entry-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 35rem !important;
+    margin: 0.6rem;
+
+
+
+
+    .entry-text {
+        margin: 0.4rem;
+    }
+}
+
+.entry-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.4rem;
+}
