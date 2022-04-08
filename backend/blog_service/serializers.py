@@ -25,5 +25,5 @@ class EntrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Entry
-        fields = ['author_name', 'blog_entry', 'date_created']
+        fields = ['pk','author_name', 'blog_entry', 'date_created']
 

@@ -8,6 +8,9 @@
     overflow-wrap: break-word;
     flex-wrap: wrap;
     -webkit-flex-flow: column;
+    justify-content: center !important;
+    // border: 2px solid #707070;
+    margin: 0.5rem !important;
 
 
 }
@@ -17,10 +20,8 @@
 .entry-wrapper {
     display: flex;
     flex-direction: column;
-    width: 35rem !important;
+    width: 55rem !important;
     margin: 0.6rem;
-
-
 
 
     .entry-text {
@@ -33,4 +34,13 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 0.4rem;
+}
+
+.card-body {
+    padding: 1rem 3rem !important;
+
+    .button-flex {
+        display: flex;
+        justify-content: flex-end;
+    }
 }

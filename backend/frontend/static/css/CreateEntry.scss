@@ -1,0 +1,42 @@
+textarea {
+    resize: none !important;
+    width: 40rem !important;
+    margin: auto !important;
+    padding: 0.6rem !important;
+}
+
+.create-entry-wrapper {
+    margin: auto;
+
+    p {
+        width: 39rem;
+        margin: auto;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.3em;
+    }
+}
+
+.form-floating {
+    margin: auto !important;
+}
+
+.entries-count {}
+
+.create_entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem !important;
+
+}
+
+.entries-info {
+    display: flex;
+    flex-direction: row;
+    margin: 0.6rem auto;
+    width: 39rem;
+    color: rgb(104, 104, 104);
+    padding: 0.1rem;
+    justify-content: space-between;
+    align-items: center;
+}

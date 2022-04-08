@@ -1,30 +1,47 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../contexts/Authenticate';
+import { Modal, Button } from 'react-bootstrap';
 
 
-export const Logout = () => {
+export const Logout = ({ isAuth, setIsAuth }) => {
     const navigate = useNavigate();
-    let isAuth = authenticate(Cookies.get('isAuth'));
 
-    useEffect(() => {
-        if (isAuth == true) {
-            axios.post('http://127.0.0.1:8000/api/logout/')
-                .then(({ data }) => {
-                    console.log(data);
-                    Cookies.set('isAuth', 'false', { expiries: 1 });
-                    setTimeout(() => {
-                        navigate('/');
-                    }, 2000)
-                })
-        }
-        else {
-            navigate('/');
-        }
-    }, [])
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => {
+        setShow(false)
+    };
+    const handleShow = () => setShow(true);
+    const handleLogout = () => {
+        axios.post('http://127.0.0.1:8000/api/logout/')
+            .then(({ data }) => {
+                handleShow();
+                console.log(data);
+                setTimeout(() => {
+                    setIsAuth(false);
+                    handleClose();
+                }, 2000)
+            })
+    }
 
 
-    return (<div>Logging Out...</div>)
+
+
+
+
+    return (
+        <>
+            <Button variant="light" onClick={handleLogout}>Logout</Button>
+            <Modal show={show}>
+                <Modal.Header>
+                    <Modal.Title>Loggin out</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>You're being logged out</Modal.Body>
+                <Modal.Footer>
+                </Modal.Footer>
+            </Modal>
+        </>)
 }

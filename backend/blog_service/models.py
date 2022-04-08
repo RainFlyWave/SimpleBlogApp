@@ -11,7 +11,7 @@ from django.utils.timezone import now
 
 class Entry(models.Model):
     author_name = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog_entry = models.TextField()
+    blog_entry = models.TextField(max_length=254)
     date_created = models.DateTimeField(default=now)
 
 

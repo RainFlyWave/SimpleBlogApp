@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .introduction-main nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -66,17 +70,17 @@
 
 .introduction-wrapper {
   color: black;
-  margin: 1rem;
+  margin: 2rem;
   padding: 1rem;
+  opacity: 1 !important;
 }
 
 .introduction-wrapper .introduction-header {
   margin: auto;
-  min-height: 60vh;
-  width: 40rem;
-  background-color: white;
+  min-height: 75vh;
+  width: 70rem;
+  background-color: #b1b1b1;
   z-index: 0;
-  border-radius: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,6 +128,6 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 30rem;
-  margin: 0.5rem auto 0;
+  margin: 1rem auto 0;
 }
 /*# sourceMappingURL=Introduction.css.map */

@@ -10,6 +10,10 @@
   overflow-wrap: break-word;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  margin: 0.5rem !important;
 }
 
 .entry-wrapper {
@@ -20,7 +24,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 35rem !important;
+  width: 55rem !important;
   margin: 0.6rem;
 }
 
@@ -40,5 +44,18 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0.4rem;
+}
+
+.card-body {
+  padding: 1rem 3rem !important;
+}
+
+.card-body .button-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 /*# sourceMappingURL=Entry.css.map */

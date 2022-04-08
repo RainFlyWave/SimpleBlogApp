@@ -127,6 +127,28 @@ class EntriesView(ListAPIView):
 
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
-        return Entry.objects.filter(author_name=user)
+        return Entry.objects.filter(author_name=user).order_by('-date_created')
 
      
+class CreateEntryView(APIView):
+    def post(self, request):
+         #   Get a token cookie from cookies
+        token = request.COOKIES.get('token')
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   If everything is allright, send appropriate response
+        user = User.objects.get(id=payload['id'])
+        entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
+        entry.save()
+        response_data={
+            "reponse": "Entry created"
+        }
+        return Response(response_data)

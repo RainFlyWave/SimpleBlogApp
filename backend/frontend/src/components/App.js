@@ -11,8 +11,8 @@ import {
 import { Logout } from "./Logout";
 
 require('bootstrap/dist/css/bootstrap.css');
-require('./../../static/css/Login.css');
-require('./../../static/css/Introduction.css');
+
+
 
 
 
