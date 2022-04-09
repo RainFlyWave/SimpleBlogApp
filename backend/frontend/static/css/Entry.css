@@ -58,4 +58,8 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
+
+.card-body .button-flex button {
+  margin: auto 0.3rem;
+}
 /*# sourceMappingURL=Entry.css.map */

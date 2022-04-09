@@ -18,6 +18,7 @@ textarea {
 
 .form-floating {
   margin: auto !important;
+  width: 100%;
 }
 
 .create_entry {
@@ -33,6 +34,10 @@ textarea {
   margin: 0.5rem !important;
 }
 
+.edit-entry {
+  width: 100% !important;
+}
+
 .entries-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,7 +46,7 @@ textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin: 0.6rem auto;
+  margin: 0.3rem auto;
   width: 39rem;
   color: #686868;
   padding: 0.1rem;

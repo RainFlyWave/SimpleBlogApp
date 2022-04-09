@@ -10,7 +10,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #7d7d7d;
+  background-color: #7d7d7dd1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -59,19 +59,20 @@ body {
 }
 
 .introduction-background {
-  background-color: #cdcdcd;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: -2;
+  background-image: url("https://www.cgm.pl/wp-content/uploads/2021/04/Screen-Shot-2021-04-28-at-09.12.04-670x390.png");
+  background-size: cover;
 }
 
 .introduction-wrapper {
   color: black;
-  margin: 2rem;
-  padding: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   opacity: 1 !important;
 }
 
@@ -79,7 +80,7 @@ body {
   margin: auto;
   min-height: 75vh;
   width: 70rem;
-  background-color: #b1b1b1;
+  background-color: #b1b1b1b3;
   z-index: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -97,7 +98,7 @@ body {
 }
 
 .introduction-wrapper .introduction-maintext {
-  padding: 3rem;
+  padding: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -129,5 +130,9 @@ body {
           justify-content: space-between;
   width: 30rem;
   margin: 1rem auto 0;
+}
+
+.modal-dialog {
+  max-width: 60rem !important;
 }
 /*# sourceMappingURL=Introduction.css.map */

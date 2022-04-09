@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { Card, Button } from 'react-bootstrap'
+import { DeleteEntry } from './DeleteEntry'
+import { EditEntry } from './EditEntry'
+import { convertDate } from './../contexts/Authenticate'
 require('./../../static/css/Entry.css')
 
-export const Entries = ({ entriesList }) => {
+export const Entries = ({ entriesList, setIsCreated }) => {
 
-    const convertDate = (date) => {
-        const formattedDate = new Date(date);
-        return formattedDate.toLocaleString('pl-PL');
-    }
+
 
 
 
@@ -28,7 +28,8 @@ export const Entries = ({ entriesList }) => {
                                     {item.blog_entry}
                                 </Card.Text>
                                 <div className='button-flex'>
-                                    <Button variant="outline-primary" disabled>Editing feature soon...</Button>
+                                    <EditEntry editPost={item} setIsCreated={setIsCreated} />
+                                    <DeleteEntry deletePost={item} setIsCreated={setIsCreated} />
                                 </div>
                             </Card.Body>
                         </Card>

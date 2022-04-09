@@ -1,4 +1,4 @@
-from blog_service.api import RegisterView, LoginView, UserView, LogoutView, EntriesView, CreateEntryView
+from blog_service.api import RegisterView, LoginView, UserView, LogoutView, EntriesView, CreateEntryView, DeleteEntryView, EditEntryView
 from django.urls import path, include
 from rest_framework import routers
 from blog_service.views import EntryViewSet
@@ -17,4 +17,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view()),
     path('entries/',EntriesView.as_view()),
     path('create/',CreateEntryView.as_view()),
+    path('delete/',DeleteEntryView.as_view()),
+     path('edit/',EditEntryView.as_view()),
 ]

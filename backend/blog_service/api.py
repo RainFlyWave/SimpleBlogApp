@@ -1,5 +1,6 @@
 
 import json
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
@@ -152,3 +153,43 @@ class CreateEntryView(APIView):
             "reponse": "Entry created"
         }
         return Response(response_data)
+
+class DeleteEntryView(APIView):
+    def post(self, request):
+        token = request.COOKIES.get('token')
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   If everything is allright, send appropriate response
+        entry = Entry.objects.get(pk=request.data['pk'])
+        entry.delete()
+        
+        return Response({"response": "Entry deleted successfully"})
+
+class EditEntryView(APIView):
+    def post(self, request):
+        token = request.COOKIES.get('token')
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   If everything is allright, send appropriate response
+        entry = Entry.objects.get(pk=request.data['pk'])
+        entry.blog_entry = request.data['entry']
+        entry.date_created = datetime.datetime.now()
+        entry.save()
+        
+        return Response({"response": "Entry updated successfully"})

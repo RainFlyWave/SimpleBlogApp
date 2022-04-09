@@ -19,7 +19,7 @@ export const Logout = ({ isAuth, setIsAuth }) => {
         axios.post('http://127.0.0.1:8000/api/logout/')
             .then(({ data }) => {
                 handleShow();
-                console.log(data);
+                console.log("logout");
                 setTimeout(() => {
                     setIsAuth(false);
                     handleClose();

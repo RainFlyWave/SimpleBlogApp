@@ -22,7 +22,7 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
                 "blog_entry": createdEntry
             })
                 .then(({ data }) => {
-                    console.log(data);
+                    console.log("create Entry");
                     setIsLoading(false);
                     setIsCreated(true);
 

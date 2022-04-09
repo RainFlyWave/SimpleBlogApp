@@ -5,3 +5,8 @@ export function authenticate(cookiez) {
     return false;
 }
 
+export const convertDate = (date) => {
+    const formattedDate = new Date(date);
+    return formattedDate.toLocaleString('pl-PL');
+}
+

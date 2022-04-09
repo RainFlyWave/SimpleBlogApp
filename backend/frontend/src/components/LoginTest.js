@@ -34,7 +34,7 @@ export const LoginTest = ({ setIsAuth }) => {
             .post('http://127.0.0.1:8000/api/login/', loginData, {
             })
             .then(({ data }) => {
-                console.log(data);
+                console.log("login tests");
 
                 setTimeout(() => {
                     setIsAuth(Cookies.set('isAuth', true, { expires: 1 }));
