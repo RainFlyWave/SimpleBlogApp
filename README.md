@@ -5,7 +5,7 @@
  
  # Tech Stack
 - Django/Django REST API
-- JavaScript(React maybe?)
+- JavaScript ̶(̶R̶e̶a̶c̶t̶ ̶m̶a̶y̶b̶e̶?̶)̶   React for sure!
 - PostgreSQL
 - Docker
 
