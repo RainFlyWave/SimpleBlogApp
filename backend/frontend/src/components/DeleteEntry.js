@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal, Card } from 'react-bootstrap'
+import { Button, Modal, Card, Spinner } from 'react-bootstrap'
 import { useState } from 'react';
 import { convertDate } from './../contexts/Authenticate'
 import axios from 'axios';
@@ -13,6 +13,7 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [isSpinning, setIsSpinning] = useState();
     const handleShow = () => {
         setShow(true);
         setIsError(false)
@@ -29,11 +30,18 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
 
         })
             .then(({ data }) => {
-                setIsCreated(true);
+
                 console.log("delete fetch");
-                setIsLoading(false)
+                setIsSpinning(true);
                 setIsError(false);
-                handleClose();
+
+                setTimeout(() => {
+                    setIsCreated(true);
+                    setIsLoading(false)
+                    setIsSpinning(false);
+                    handleClose();
+                }, 2000)
+
             })
             .catch((err) => {
                 console.error(err);
@@ -65,7 +73,18 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
                         </Card.Body>
                     </Card>
                     {isError ? <p>An error has occured</p> : null}
+                    <div className='login-spinner'>
+                        <div className='login-message'>
+                            {isSpinning ? 'Deleting entry...  ' : null}
+                        </div>
+                        {isSpinning ?
+                            <Spinner animation="border" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                            : null
+                        }
 
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>

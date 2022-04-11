@@ -59,14 +59,13 @@ body {
 }
 
 .introduction-background {
+  background-color: #cdcdcd;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: -2;
-  background-image: url("https://www.cgm.pl/wp-content/uploads/2021/04/Screen-Shot-2021-04-28-at-09.12.04-670x390.png");
-  background-size: cover;
 }
 
 .introduction-wrapper {
@@ -134,5 +133,42 @@ body {
 
 .modal-dialog {
   max-width: 60rem !important;
+}
+
+.not-validated {
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+.login-spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logout-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=Introduction.css.map */

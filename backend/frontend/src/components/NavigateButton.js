@@ -5,23 +5,24 @@ import { useState } from 'react';
 export const NavigateButton = ({ isLoading, entryDataNextPage, entryDataPreviousPage, fetchData }) => {
     const [isPrevious, setIsPrevious] = useState();
     const [isNext, setIsNext] = useState();
-    const [whichPage, setWhichPage] = useState(1);
 
     useEffect(() => {
 
         setIsNext(entryDataNextPage);
         setIsPrevious(entryDataPreviousPage);
+
     }, [])
 
     return (
         <div className='entries-navigate'>
-            <Button variant="primary" disabled={isLoading || !isPrevious} onClick={
+
+            <Button variant="outline-primary" style={!isPrevious ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isPrevious} onClick={
                 () => {
                     fetchData(isPrevious);
 
                 }
             }>Previous Page</Button>
-            <Button variant="primary" disabled={isLoading || !isNext} onClick={
+            <Button variant="outline-primary" style={!isNext ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isNext} onClick={
                 () => {
                     fetchData(isNext);
 

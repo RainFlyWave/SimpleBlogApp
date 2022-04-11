@@ -6,7 +6,7 @@ import axios from 'axios';
 import { authenticate } from '../contexts/Authenticate';
 require('./../../static/css/Login.css');
 
-export const LoginTest = ({ setIsAuth }) => {
+export const SignUp = ({ setIsAuth }) => {
 
     const [isLoading, setisLoading] = useState(false)
     const [usernameData, setUsernameData] = useState('');
@@ -32,29 +32,38 @@ export const LoginTest = ({ setIsAuth }) => {
         }
 
         setValidated(true);
-        const loginData = {
+        const registerData = {
             'username': usernameData,
             'password': passwordData
         };
 
         setisLoading(true);
         await axios
-            .post('http://127.0.0.1:8000/api/login/', loginData, {
+            .post('http://127.0.0.1:8000/api/register/', registerData, {
             })
             .then(({ data }) => {
-                console.log("login tests");
                 setIsSpinning(true);
-                setTimeout(() => {
-                    setIsAuth(Cookies.set('isAuth', true, { expires: 1 }));
-                    handleClose();
-                    setisLoading(false);
-                    setIsSpinning(false);
-                }, 2000)
+
+                axios
+                    .post('http://127.0.0.1:8000/api/login/', registerData, {
+                    })
+                    .then(({ data }) => {
+                        setIsSpinning(true);
+                        setTimeout(() => {
+                            setIsAuth(Cookies.set('isAuth', true, { expires: 1 }));
+                            handleClose();
+                            setisLoading(false);
+                            setIsSpinning(false);
+                        }, 2000)
+                    }).catch(error => {
+                        console.error(error.response.status)
+                        if (error.response.status == '403') {
+                            setIsData('Wrong username or password!');
+                        }
+                        setisLoading(false);
+                    });
             }).catch(error => {
                 console.error(error.response.status)
-                if (error.response.status == '403') {
-                    setIsData('Wrong username or password!');
-                }
                 setisLoading(false);
             });
     }
@@ -62,7 +71,7 @@ export const LoginTest = ({ setIsAuth }) => {
     const checkValidation = (e) => {
         if (usernameData.length > 0 && passwordData.length > 0) {
             handleSubmit(e);
-            setIsData(true)
+            setIsData('')
         }
         else {
             setIsData('You must provide login and password.')
@@ -72,7 +81,7 @@ export const LoginTest = ({ setIsAuth }) => {
 
     return (
         <>
-            <Button variant="light" onClick={handleShow}>Sign In</Button>
+            <Button variant="secondary" onClick={handleShow}>Sign In</Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton >
@@ -118,7 +127,7 @@ export const LoginTest = ({ setIsAuth }) => {
                         <p className='not-validated'>{isData}</p>
                         <div className='login-spinner'>
                             <div className='login-message'>
-                                {isSpinning ? 'Logging In...  ' : null}
+                                {isSpinning ? 'Signing Up...  ' : null}
                             </div>
                             {isSpinning ?
                                 <Spinner animation="border" role="status">
@@ -136,7 +145,7 @@ export const LoginTest = ({ setIsAuth }) => {
                         Close
                     </Button>
                     <Button variant="primary" onClick={checkValidation} disabled={isLoading}>
-                        Log In
+                        Sign Up
                     </Button>
                 </Modal.Footer>
             </Modal>

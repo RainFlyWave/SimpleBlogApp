@@ -17,7 +17,6 @@ import os
 class RegisterView(APIView):
 
     def post(self, request):
-        
         #   Serialize request data using UserSerializer
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

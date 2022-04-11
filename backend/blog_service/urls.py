@@ -18,5 +18,6 @@ urlpatterns = [
     path('entries/',EntriesView.as_view()),
     path('create/',CreateEntryView.as_view()),
     path('delete/',DeleteEntryView.as_view()),
-     path('edit/',EditEntryView.as_view()),
+    path('edit/',EditEntryView.as_view()),
+
 ]

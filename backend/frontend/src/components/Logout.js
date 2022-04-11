@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../contexts/Authenticate';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Spinner } from 'react-bootstrap';
 
 
 export const Logout = ({ isAuth, setIsAuth }) => {
@@ -39,7 +39,14 @@ export const Logout = ({ isAuth, setIsAuth }) => {
                 <Modal.Header>
                     <Modal.Title>Loggin out</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>You're being logged out</Modal.Body>
+                <Modal.Body>
+                    <div className='logout-wrapper'>
+                        You're being logged out...
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </div>
+                </Modal.Body>
                 <Modal.Footer>
                 </Modal.Footer>
             </Modal>

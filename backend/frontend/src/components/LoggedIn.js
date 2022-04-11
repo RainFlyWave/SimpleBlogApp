@@ -41,8 +41,8 @@ export const LoggedIn = () => {
                 <ExampleCreateEntry />
                 <ExampleEntries />
                 <div className='entries-navigate'>
-                    <Button variant="primary" disabled={isLoading}>Previous Page</Button>
-                    <Button variant="primary" disabled={isLoading}>Next Page</Button>
+                    <Button variant="outline-primary" disabled={isLoading}>Previous Page</Button>
+                    <Button variant="outline-primary" disabled={isLoading}>Next Page</Button>
                 </div>
             </div>
         )

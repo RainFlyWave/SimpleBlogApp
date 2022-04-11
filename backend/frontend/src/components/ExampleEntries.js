@@ -18,7 +18,8 @@ export const ExampleEntries = () => {
 
                             </Card.Text>
                             <div className='button-flex'>
-                                <Button variant="outline-primary" disabled>Editing feature soon...</Button>
+                                <Button variant="outline-primary" disabled>Edit</Button>
+                                <Button variant="outline-danger" disabled>Delete</Button>
                             </div>
                         </Card.Body>
                     </Card>
@@ -35,7 +36,8 @@ export const ExampleEntries = () => {
 
                             </Card.Text>
                             <div className='button-flex'>
-                                <Button variant="outline-primary" disabled>Editing feature soon...</Button>
+                                <Button variant="outline-primary" disabled>Edit</Button>
+                                <Button variant="outline-danger" disabled>Delete</Button>
                             </div>
                         </Card.Body>
                     </Card>
@@ -52,7 +54,8 @@ export const ExampleEntries = () => {
 
                             </Card.Text>
                             <div className='button-flex'>
-                                <Button variant="outline-primary" disabled>Editing feature soon...</Button>
+                                <Button variant="outline-primary" disabled>Edit</Button>
+                                <Button variant="outline-danger" disabled>Delete</Button>
                             </div>
                         </Card.Body>
                     </Card>
@@ -69,12 +72,12 @@ export const ExampleEntries = () => {
 
                             </Card.Text>
                             <div className='button-flex'>
-                                <Button variant="outline-primary" disabled>Editing feature soon...</Button>
+                                <Button variant="outline-primary" disabled>Edit</Button>
+                                <Button variant="outline-danger" disabled>Delete</Button>
                             </div>
                         </Card.Body>
                     </Card>
                 </li>
-
             </ul >
         </>
 

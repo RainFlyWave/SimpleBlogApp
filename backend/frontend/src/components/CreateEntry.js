@@ -56,7 +56,8 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
                 </FloatingLabel>
             </div>
             <div className='entries-info'>
-                <div className='entries-count'>Your entries count: {entriesCount}</div>
+
+                <div className='entries-count'>{entriesCount > 0 ? `Your entries count: ${entriesCount}` : null}</div>
                 <Button variant="primary" onClick={!isLoading ? sendEntry : null} disabled={isLoading}>Share</Button>
             </div>
             <Modal show={show} onHide={handleClose}>
