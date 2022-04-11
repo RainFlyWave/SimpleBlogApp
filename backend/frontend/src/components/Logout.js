@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../contexts/Authenticate';
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button, Spinner, DropdownButton, Dropdown } from 'react-bootstrap';
 
 
 export const Logout = ({ isAuth, setIsAuth }) => {
@@ -34,7 +34,23 @@ export const Logout = ({ isAuth, setIsAuth }) => {
 
     return (
         <>
-            <Button variant="light" onClick={handleLogout}>Logout</Button>
+            {/* <Dropdown>
+                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                    Settings
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#">My profile</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown> */}
+
+            <DropdownButton id="dropdown-item-button" variant='light' title="Settings">
+                <Dropdown.Item as="button">My profile</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={handleLogout}>Logout</Dropdown.Item>
+            </DropdownButton>
+
+            {/* <Button variant="light" onClick={handleLogout}>Logout</Button> */}
             <Modal show={show}>
                 <Modal.Header>
                     <Modal.Title>Loggin out</Modal.Title>

@@ -7,6 +7,7 @@ import { LoggedIn } from './LoggedIn';
 import { authenticate } from '../contexts/Authenticate';
 import { Logout } from './Logout';
 import { LoginTest } from './LoginTest';
+import { SignUp } from './SignUp'
 
 
 
@@ -16,9 +17,6 @@ export const Introduction = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(authenticate(Cookies.get('isAuth')));
     let isfetched = false;
-
-
-    // const isAuth = authenticate(Cookies.get('isAuth'));
 
 
     const goFetch = async () => {
