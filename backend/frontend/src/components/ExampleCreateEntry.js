@@ -20,7 +20,7 @@ export const ExampleCreateEntry = () => {
             </div>
             <div className='entries-info'>
                 <div className='entries-count'></div>
-                <Button variant="primary" disabled>Share</Button>
+                <Button variant="success" disabled>Share</Button>
             </div>
         </div>
 

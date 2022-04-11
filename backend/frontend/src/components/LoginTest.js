@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Form, Button, Badge, InputGroup, Col, Modal, Spinner } from 'react-bootstrap'
+import { Form, Button, Badge, InputGroup, Col, Modal, Spinner, Offcanvas } from 'react-bootstrap'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -69,7 +69,7 @@ export const LoginTest = ({ setIsAuth }) => {
         <>
             <Button variant="light" onClick={handleShow}>Sign In</Button>
 
-            <Modal show={show} onHide={handleClose} backdrop="static" centered>
+            {/* <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton >
                     <Modal.Title>
                         Simple Blog  <Badge bg="secondary">APP</Badge>
@@ -139,7 +139,74 @@ export const LoginTest = ({ setIsAuth }) => {
                         Log In
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
+
+            <Offcanvas show={show} placement="end" onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Log In</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <Form validated={validated} onKeyUp={e => {
+                        if (e.key === "Enter") {
+                            checkValidation(e);
+                        }
+                    }}>
+                        <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomUsername">
+                            <Form.Label>Login</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Username"
+                                    aria-describedby="inputGroupPrepend"
+                                    required
+                                    onChange={e => setUsernameData(e.target.value)}
+                                    disabled={isLoading}
+                                    autoFocus
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please enter your username.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomPassword">
+                            <Form.Label>Password</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Password"
+                                    aria-describedby="inputGroupPrepend"
+                                    required
+                                    onChange={e => setPassworData(e.target.value)}
+                                    disabled={isLoading}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please enter your password.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                        <p className='not-validated'>{isData}</p>
+                        <div className='login-spinner'>
+                            <div className='login-message'>
+                                {isSpinning ? 'Logging In...  ' : null}
+                            </div>
+                            {isSpinning ?
+                                <Spinner animation="border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                                : null
+                            }
+
+                        </div>
+                        <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
+                            Close
+                        </Button>
+                        <Button variant="success" onClick={checkValidation} disabled={isLoading}>
+                            Log In
+                        </Button>
+                    </Form>
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     )
 

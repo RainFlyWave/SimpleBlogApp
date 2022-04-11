@@ -1,3 +1,5 @@
+@import './Animation';
+
 body {
     // font-family: 'Oswald', sans-serif;
     overflow: hidden;
@@ -7,6 +9,7 @@ body {
 
     .header-logo {
         color: white;
+        font-family: 'Inconsolata', monospace;
     }
 
     nav {
@@ -28,6 +31,7 @@ body {
         h1 {
             margin: auto;
             flex: 2;
+            color: white;
         }
     }
 
@@ -100,6 +104,7 @@ body {
     justify-content: space-between;
     width: 30rem;
     margin: 1rem auto 0;
+    @include animation-details(fadeIn, ease-out, 0.4s);
 }
 
 .modal-dialog {

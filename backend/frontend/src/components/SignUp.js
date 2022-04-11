@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Form, Button, Badge, InputGroup, Col, Modal, Spinner } from 'react-bootstrap'
+import { Form, Button, Badge, InputGroup, Col, Modal, Spinner, Offcanvas } from 'react-bootstrap'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -83,7 +83,7 @@ export const SignUp = ({ setIsAuth }) => {
         <>
             <Button variant="secondary" onClick={handleShow}>Sign In</Button>
 
-            <Modal show={show} onHide={handleClose} centered backdrop="static">
+            {/* <Modal show={show} onHide={handleClose} centered backdrop="static">
                 <Modal.Header closeButton >
                     <Modal.Title>
                         Simple Blog  <Badge bg="secondary">APP</Badge>
@@ -148,7 +148,69 @@ export const SignUp = ({ setIsAuth }) => {
                         Sign Up
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
+
+            <Offcanvas show={show} placement="end" onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Sign In</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <Form validated={validated}>
+                        <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomUsername">
+                            <Form.Label>Login</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Username"
+                                    aria-describedby="inputGroupPrepend"
+                                    required
+                                    onChange={e => setUsernameData(e.target.value)}
+                                    disabled={isLoading}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please enter your username.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomPassword">
+                            <Form.Label>Password</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Password"
+                                    aria-describedby="inputGroupPrepend"
+                                    required
+                                    onChange={e => setPassworData(e.target.value)}
+                                    disabled={isLoading}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please enter your password.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                        <p className='not-validated'>{isData}</p>
+                        <div className='login-spinner'>
+                            <div className='login-message'>
+                                {isSpinning ? 'Signing Up...  ' : null}
+                            </div>
+                            {isSpinning ?
+                                <Spinner animation="border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                                : null
+                            }
+
+                        </div>
+                        <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
+                            Close
+                        </Button>
+                        <Button variant="success" onClick={checkValidation} disabled={isLoading}>
+                            Sign Up
+                        </Button>
+                    </Form>
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     )
 

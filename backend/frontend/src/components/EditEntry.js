@@ -100,7 +100,7 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                         Cancel
                     </Button>
-                    <Button variant="primary" onClick={editEntry} disabled={isLoading}>
+                    <Button variant="success" onClick={editEntry} disabled={isLoading}>
                         Edit
                     </Button>
                 </Modal.Footer>
