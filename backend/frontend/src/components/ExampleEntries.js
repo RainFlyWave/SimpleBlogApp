@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Card, Button } from 'react-bootstrap'
-require('./../../static/css/Entry.css')
+
 
 export const ExampleEntries = () => {
     return (
