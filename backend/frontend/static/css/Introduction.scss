@@ -5,11 +5,14 @@ body {
 
 .introduction-main {
 
+    .header-logo {
+        color: white;
+    }
 
     nav {
         display: flex;
         flex-direction: row;
-        background-color: #7d7d7dd1;
+        background-color: #1E703A;
         align-items: center;
         justify-content: space-around;
         padding: 1rem;
@@ -44,7 +47,7 @@ body {
 }
 
 .introduction-background {
-    background-color: #cdcdcd;
+    background-color: #8AF2AD;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -68,7 +71,6 @@ body {
         margin: auto;
         min-height: 75vh;
         width: 70rem;
-        background-color: #b1b1b1b3;
         z-index: 0;
         display: flex;
         flex-direction: column;

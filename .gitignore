@@ -3,3 +3,4 @@ backend/app/
 db_data/
 pgadmin_data/
 backend/db.sqlite3
+runme.bat

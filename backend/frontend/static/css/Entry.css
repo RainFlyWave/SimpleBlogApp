@@ -3,9 +3,10 @@
   display: -ms-flexbox !important;
   display: flex !important;
   padding: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   max-height: 50vh;
+  min-height: 50vh;
   position: relative;
   overflow-wrap: break-word;
   -ms-flex-wrap: wrap;
@@ -14,6 +15,34 @@
       -ms-flex-pack: center !important;
           justify-content: center !important;
   margin: 0.5rem !important;
+}
+
+.entry-list::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.entry-list::-webkit-scrollbar-thumb {
+  background: green;
+}
+
+.entry-list::-webkit-scrollbar-track {
+  background: rgba(104, 214, 141, 0);
+  border-radius: 10px;
+}
+
+.entry-list {
+  scrollbar-face-color: green;
+  scrollbar-track-color: rgba(104, 214, 141, 0);
+}
+
+.more-button {
+  border: none;
+  color: #747474;
+}
+
+.more-button:hover {
+  color: black;
 }
 
 .entry-wrapper {

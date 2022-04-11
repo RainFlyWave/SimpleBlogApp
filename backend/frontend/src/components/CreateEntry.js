@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FloatingLabel, Form, Button, Modal } from 'react-bootstrap';
+import { FloatingLabel, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -23,8 +23,11 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
             })
                 .then(({ data }) => {
                     console.log("create Entry");
-                    setIsLoading(false);
-                    setIsCreated(true);
+                    setTimeout(() => {
+                        setIsLoading(false);
+                        setIsCreated(true);
+                    }, 2000);
+
 
                 })
                 .catch((err) => {
@@ -50,15 +53,25 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
                         as="textarea"
                         placeholder="Leave a comment here"
                         style={{ height: '120px' }}
-                        maxLength="254"
+                        maxLength="512"
                         onChange={e => setCreatedEntry(e.target.value)}
                     />
                 </FloatingLabel>
             </div>
             <div className='entries-info'>
 
-                <div className='entries-count'>{entriesCount > 0 ? `Your entries count: ${entriesCount}` : null}</div>
-                <Button variant="primary" onClick={!isLoading ? sendEntry : null} disabled={isLoading}>Share</Button>
+                <div className='entries-count'>{entriesCount > 0 ? `Your entries count: ${entriesCount}` : 'You have no entries.'}</div>
+                <Button variant="success" onClick={!isLoading ? sendEntry : null} disabled={isLoading}>
+                    {isLoading &&
+                        <Spinner size="sm" animation="border" variant="dark" role="status">
+                            <span className="visually-hidden">Loading... </span>
+                        </Spinner>
+
+                    }
+                    {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
+                    Share
+                </Button>
+
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

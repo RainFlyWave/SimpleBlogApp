@@ -16,13 +16,13 @@ export const NavigateButton = ({ isLoading, entryDataNextPage, entryDataPrevious
     return (
         <div className='entries-navigate'>
 
-            <Button variant="outline-primary" style={!isPrevious ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isPrevious} onClick={
+            <Button variant="success" style={!isPrevious ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isPrevious} onClick={
                 () => {
                     fetchData(isPrevious);
 
                 }
             }>Previous Page</Button>
-            <Button variant="outline-primary" style={!isNext ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isNext} onClick={
+            <Button variant="success" style={!isNext ? { visibility: 'hidden' } : { visibility: 'visible' }} disabled={isLoading || !isNext} onClick={
                 () => {
                     fetchData(isNext);
 

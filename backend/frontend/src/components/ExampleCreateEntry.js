@@ -19,7 +19,7 @@ export const ExampleCreateEntry = () => {
                 </FloatingLabel>
             </div>
             <div className='entries-info'>
-                <div className='entries-count'>Your entries count: </div>
+                <div className='entries-count'></div>
                 <Button variant="primary" disabled>Share</Button>
             </div>
         </div>

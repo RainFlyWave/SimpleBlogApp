@@ -135,7 +135,7 @@ export const LoginTest = ({ setIsAuth }) => {
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={checkValidation} disabled={isLoading}>
+                    <Button variant="success" onClick={checkValidation} disabled={isLoading}>
                         Log In
                     </Button>
                 </Modal.Footer>

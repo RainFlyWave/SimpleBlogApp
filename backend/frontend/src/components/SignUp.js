@@ -144,7 +144,7 @@ export const SignUp = ({ setIsAuth }) => {
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={checkValidation} disabled={isLoading}>
+                    <Button variant="success" onClick={checkValidation} disabled={isLoading}>
                         Sign Up
                     </Button>
                 </Modal.Footer>
