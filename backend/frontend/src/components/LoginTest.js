@@ -4,7 +4,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { authenticate } from '../contexts/Authenticate';
-require('./../../static/css/Login.css');
+
 
 export const LoginTest = ({ setIsAuth }) => {
 
@@ -15,10 +15,7 @@ export const LoginTest = ({ setIsAuth }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => {
-
-        setShow(true);
-    }
+    const handleShow = () => setShow(true);
 
 
 

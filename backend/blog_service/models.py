@@ -14,5 +14,3 @@ class Entry(models.Model):
     blog_entry = models.TextField(max_length=254)
     date_created = models.DateTimeField(default=now)
 
-
-   
