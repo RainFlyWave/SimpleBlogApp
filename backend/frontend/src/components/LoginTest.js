@@ -4,7 +4,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { authenticate } from '../contexts/Authenticate';
-require('./../../static/css/Login.css');
+
 
 export const LoginTest = ({ setIsAuth }) => {
 
@@ -16,13 +16,8 @@ export const LoginTest = ({ setIsAuth }) => {
     const [isData, setIsData] = useState('');
     const [isSpinning, setIsSpinning] = useState();
 
-    const handleClose = () => {
-        setShow(false);
-        setIsData('');
-    }
-    const handleShow = () => {
-        setShow(true);
-    }
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleSubmit = async (event) => {
         const form = event.currentTarget;

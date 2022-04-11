@@ -8,9 +8,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
-
-
-require('bootstrap/dist/css/bootstrap.css');
+require('./AllStyles');
 
 
 

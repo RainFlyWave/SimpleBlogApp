@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import { DeleteEntry } from './DeleteEntry'
 import { EditEntry } from './EditEntry'
 import { convertDate } from './../contexts/Authenticate'
-require('./../../static/css/Entry.css')
+
 
 export const Entries = ({ entriesList, setIsCreated }) => {
 

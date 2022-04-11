@@ -7,8 +7,6 @@ import { LoggedIn } from './LoggedIn';
 import { authenticate } from '../contexts/Authenticate';
 import { Logout } from './Logout';
 import { LoginTest } from './LoginTest';
-import { SignUp } from './SignUp';
-require('./../../static/css/Introduction.css');
 
 
 

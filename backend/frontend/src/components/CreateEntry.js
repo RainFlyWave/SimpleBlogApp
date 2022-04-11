@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FloatingLabel, Form, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
-require('../../static/css/CreateEntry.css');
+
 
 export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => {
     const navigation = useNavigate();
