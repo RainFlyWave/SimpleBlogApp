@@ -69,14 +69,18 @@ export const LoginTest = ({ setIsAuth }) => {
         <>
             <Button variant="light" onClick={handleShow}>Sign In</Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} backdrop="static" centered>
                 <Modal.Header closeButton >
                     <Modal.Title>
                         Simple Blog  <Badge bg="secondary">APP</Badge>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form validated={validated}>
+                    <Form validated={validated} onKeyUp={e => {
+                        if (e.key === "Enter") {
+                            checkValidation(e);
+                        }
+                    }}>
                         <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomUsername">
                             <Form.Label>Login</Form.Label>
                             <InputGroup hasValidation>
@@ -87,6 +91,7 @@ export const LoginTest = ({ setIsAuth }) => {
                                     required
                                     onChange={e => setUsernameData(e.target.value)}
                                     disabled={isLoading}
+                                    autoFocus
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Please enter your username.

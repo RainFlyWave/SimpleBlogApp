@@ -83,7 +83,7 @@ export const SignUp = ({ setIsAuth }) => {
         <>
             <Button variant="secondary" onClick={handleShow}>Sign In</Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} centered backdrop="static">
                 <Modal.Header closeButton >
                     <Modal.Title>
                         Simple Blog  <Badge bg="secondary">APP</Badge>

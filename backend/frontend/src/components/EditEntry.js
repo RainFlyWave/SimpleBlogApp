@@ -50,7 +50,12 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
     return (
         <>
             <Button variant="outline-primary" onClick={handleShow}>Edit</Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                centered
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Edit entry</Modal.Title>
                 </Modal.Header>

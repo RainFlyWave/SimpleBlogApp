@@ -9,12 +9,13 @@ import { Modal, Button, Spinner, DropdownButton, Dropdown } from 'react-bootstra
 export const Logout = ({ isAuth, setIsAuth }) => {
     const navigate = useNavigate();
 
-    const [show, setShow] = useState(false);
+    const [showLogout, setShowLogout] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
 
     const handleClose = () => {
-        setShow(false)
+        setShowLogout(false)
     };
-    const handleShow = () => setShow(true);
+    const handleShow = () => setShowLogout(true);
     const handleLogout = () => {
         axios.post('http://127.0.0.1:8000/api/logout/')
             .then(({ data }) => {
@@ -45,13 +46,10 @@ export const Logout = ({ isAuth, setIsAuth }) => {
                 </Dropdown.Menu>
             </Dropdown> */}
 
-            <DropdownButton id="dropdown-item-button" variant='light' title="Settings">
-                <Dropdown.Item as="button">My profile</Dropdown.Item>
-                <Dropdown.Item as="button" onClick={handleLogout}>Logout</Dropdown.Item>
-            </DropdownButton>
 
+            <Dropdown.Item as="button" onClick={handleLogout}>Logout</Dropdown.Item>
             {/* <Button variant="light" onClick={handleLogout}>Logout</Button> */}
-            <Modal show={show}>
+            <Modal show={showLogout}>
                 <Modal.Header>
                     <Modal.Title>Loggin out</Modal.Title>
                 </Modal.Header>

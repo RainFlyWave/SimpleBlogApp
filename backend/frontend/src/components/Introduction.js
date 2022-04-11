@@ -8,6 +8,7 @@ import { authenticate } from '../contexts/Authenticate';
 import { Logout } from './Logout';
 import { LoginTest } from './LoginTest';
 import { SignUp } from './SignUp'
+import { Settings } from './Settings';
 
 
 
@@ -59,7 +60,8 @@ export const Introduction = () => {
                         {isAuth ? `Hi, ${userData.username}` : <LoginTest setIsAuth={setIsAuth} />}
                     </li>
                     <li>
-                        {isAuth ? <Logout isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />}
+                        {/* {isAuth ? <Logout isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />} */}
+                        {isAuth ? <Settings isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />}
                     </li>
                 </ul>
             </nav>

@@ -25,8 +25,7 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
         setIsLoading(true)
         await axios.post('http://127.0.0.1:8000/api/delete/', {
 
-            "pk": entryId,
-            "chuj": "kurwa"
+            "pk": entryId
 
         })
             .then(({ data }) => {
@@ -54,7 +53,12 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
     return (
         <>
             <Button variant="outline-danger" onClick={handleShow}>Delete</Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                centered
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Delete entry</Modal.Title>
                 </Modal.Header>
