@@ -13,7 +13,7 @@ export const UserProfile = () => {
 
             <Offcanvas show={show} placement="end" onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                    <Offcanvas.Title>Customize your profile</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     Some text as placeholder. In real life you can have the elements you

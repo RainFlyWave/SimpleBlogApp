@@ -156,7 +156,11 @@ export const SignUp = ({ setIsAuth }) => {
                     <Offcanvas.Title>Sign Up</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <Form validated={validated}>
+                    <Form validated={validated} onKeyUp={e => {
+                        if (e.key === "Enter") {
+                            checkValidation(e);
+                        }
+                    }}>
                         <Form.Group as={Col} md="mb-3 input-field" controlId="validationCustomUsername">
                             <Form.Label>Login</Form.Label>
                             <InputGroup hasValidation>
@@ -191,18 +195,6 @@ export const SignUp = ({ setIsAuth }) => {
                             </InputGroup>
                         </Form.Group>
                         <p className='not-validated'>{isData}</p>
-                        <div className='login-spinner'>
-                            <div className='login-message'>
-                                {isSpinning ? 'Signing Up...  ' : null}
-                            </div>
-                            {isSpinning ?
-                                <Spinner animation="border" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                                : null
-                            }
-
-                        </div>
                         <div className='login-buttons'>
                             <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                                 Close
