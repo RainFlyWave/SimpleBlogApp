@@ -41,4 +41,21 @@
   margin: 10px auto;
   text-align: center;
 }
+
+.login-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.login-buttons button {
+  margin: auto 0.2rem;
+}
 /*# sourceMappingURL=Login.css.map */

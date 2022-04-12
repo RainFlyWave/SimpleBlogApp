@@ -76,7 +76,6 @@ body {
 
 .introduction-wrapper {
   color: black;
-  margin: 0.5rem;
   padding: 0.5rem;
   opacity: 1 !important;
 }
@@ -139,10 +138,6 @@ body {
   -moz-animation: fadeIn ease-out 0.4s;
   -o-animation: fadeIn ease-out 0.4s;
   -ms-animation: fadeIn ease-out 0.4s;
-}
-
-.modal-dialog {
-  max-width: 60rem !important;
 }
 
 .not-validated {

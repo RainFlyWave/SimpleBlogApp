@@ -46,6 +46,10 @@
 
     li {
         @include animation-details(fadeIn, linear, 0.5s);
+
+        .entry-wrapper {
+            width: 55rem !important;
+        }
     }
 
 
@@ -67,8 +71,8 @@
 .entry-wrapper {
     display: flex;
     flex-direction: column;
-    width: 55rem !important;
     margin: 0.6rem;
+    min-width: 30rem !important;
 
 
     .entry-text {

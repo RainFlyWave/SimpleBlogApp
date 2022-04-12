@@ -55,6 +55,7 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
                 onHide={handleClose}
                 backdrop="static"
                 centered
+                size="lg"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Edit entry</Modal.Title>

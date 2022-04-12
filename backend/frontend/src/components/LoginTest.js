@@ -186,24 +186,20 @@ export const LoginTest = ({ setIsAuth }) => {
                             </InputGroup>
                         </Form.Group>
                         <p className='not-validated'>{isData}</p>
-                        <div className='login-spinner'>
-                            <div className='login-message'>
-                                {isSpinning ? 'Logging In...  ' : null}
-                            </div>
-                            {isSpinning ?
-                                <Spinner animation="border" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                                : null
-                            }
-
+                        <div className='login-buttons'>
+                            <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
+                                Close
+                            </Button>
+                            <Button variant="success" onClick={checkValidation} disabled={isLoading}>
+                                {isLoading &&
+                                    <Spinner size="sm" animation="border" variant="dark" role="status">
+                                        <span className="visually-hidden">Loading... </span>
+                                    </Spinner>
+                                }
+                                {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
+                                Log In
+                            </Button>
                         </div>
-                        <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
-                            Close
-                        </Button>
-                        <Button variant="success" onClick={checkValidation} disabled={isLoading}>
-                            Log In
-                        </Button>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>

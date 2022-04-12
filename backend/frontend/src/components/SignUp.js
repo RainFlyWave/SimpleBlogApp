@@ -57,8 +57,9 @@ export const SignUp = ({ setIsAuth }) => {
                         }, 2000)
                     }).catch(error => {
                         console.error(error.response.status)
-                        if (error.response.status == '403') {
-                            setIsData('Wrong username or password!');
+                        if (error.response.status === 400) {
+                            setIsData('User already exists!');
+
                         }
                         setisLoading(false);
                     });
@@ -81,7 +82,7 @@ export const SignUp = ({ setIsAuth }) => {
 
     return (
         <>
-            <Button variant="secondary" onClick={handleShow}>Sign In</Button>
+            <Button variant="secondary" onClick={handleShow}>Sign Up</Button>
 
             {/* <Modal show={show} onHide={handleClose} centered backdrop="static">
                 <Modal.Header closeButton >
@@ -152,7 +153,7 @@ export const SignUp = ({ setIsAuth }) => {
 
             <Offcanvas show={show} placement="end" onHide={handleClose}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Sign In</Offcanvas.Title>
+                    <Offcanvas.Title>Sign Up</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Form validated={validated}>
@@ -202,12 +203,20 @@ export const SignUp = ({ setIsAuth }) => {
                             }
 
                         </div>
-                        <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
-                            Close
-                        </Button>
-                        <Button variant="success" onClick={checkValidation} disabled={isLoading}>
-                            Sign Up
-                        </Button>
+                        <div className='login-buttons'>
+                            <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
+                                Close
+                            </Button>
+                            <Button variant="success" onClick={checkValidation} disabled={isLoading}>
+                                {isLoading &&
+                                    <Spinner size="sm" animation="border" variant="dark" role="status">
+                                        <span className="visually-hidden">Loading... </span>
+                                    </Spinner>
+                                }
+                                {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
+                                Sign Up
+                            </Button>
+                        </div>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>

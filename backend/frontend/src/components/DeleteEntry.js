@@ -58,6 +58,7 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
                 onHide={handleClose}
                 backdrop="static"
                 centered
+                size="lg"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Delete entry</Modal.Title>

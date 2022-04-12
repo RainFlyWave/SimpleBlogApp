@@ -44,6 +44,10 @@
   -ms-animation: fadeIn linear 0.5s;
 }
 
+.entry-list li .entry-wrapper {
+  width: 55rem !important;
+}
+
 .entry-list .entries-count {
   animation: fadeIn linear 0.5s;
   -webkit-animation: fadeIn linear 0.5s;
@@ -69,8 +73,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 55rem !important;
   margin: 0.6rem;
+  min-width: 30rem !important;
 }
 
 .entry-wrapper .entry-text {
