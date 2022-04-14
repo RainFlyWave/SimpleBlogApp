@@ -7,7 +7,7 @@ from rest_framework.generics import ListAPIView
 from blog_service.serializers import UserSerializer, EntrySerializer
 from django.contrib.auth.models import User
 from rest_framework.exceptions import AuthenticationFailed
-from blog_service.models import Entry
+from blog_service.models import Entry, EntryStats
 import jwt
 import datetime
 import os
@@ -147,6 +147,10 @@ class CreateEntryView(APIView):
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
         entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
+        # print(datetime.datetime.now().date())
+        
+        # entry_stats_filtered = EntryStats.objects.get()
+        # entry_stats = EntryStats(entry_author_name=user)
         entry.save()
         response_data={
             "reponse": "Entry created"

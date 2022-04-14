@@ -1,7 +1,9 @@
+from email.policy import default
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator
+import datetime
 
 
 
@@ -22,9 +24,10 @@ class Entry(models.Model):
 class EntryStats(models.Model):
     """Model that stores amount of every user"""
     
-    # entry_date_created = custom Field in progress
+    entry_date_created = models.DateTimeField(auto_now_add=True)
     entry_author_name = models.ForeignKey(User, on_delete=models.CASCADE)
     entry_amount = models.IntegerField(validators=[
         MaxValueValidator(255)
-    ])
+    ],
+    default=0)
 
