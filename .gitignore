@@ -4,3 +4,4 @@ db_data/
 pgadmin_data/
 backend/db.sqlite3
 runme.bat
+__pycache__/
