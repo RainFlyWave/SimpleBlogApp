@@ -147,6 +147,8 @@ class CreateEntryView(APIView):
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
         entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
+
+        # check if entry_stats model exists for day that user posted blog entry
         # print(datetime.datetime.now().date())
         
         # entry_stats_filtered = EntryStats.objects.get()
