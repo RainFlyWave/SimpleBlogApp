@@ -2,13 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator
+from pkg_resources import require
 
 
 
 
 class UserDetails(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='images/')
+    profile_pic = models.ImageField(upload_to='images/',blank=True)
     is_banned = models.BooleanField(default=False)
 
     def __str__(self):
