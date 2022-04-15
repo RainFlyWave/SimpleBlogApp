@@ -1,16 +1,15 @@
-from email.policy import default
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator
-import datetime
 
 
 
-# Simple concept of User model.
-# Passwords are stored in plain text 
 
-
+class UserDetails(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to='images/')
+    is_banned = models.BooleanField(default=False)
 
 class Entry(models.Model):
     author_name = models.ForeignKey(User, on_delete=models.CASCADE)

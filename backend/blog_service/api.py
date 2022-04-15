@@ -4,7 +4,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
 from blog_service.serializers import UserSerializer, EntrySerializer
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from blog_service.models import User
 from rest_framework.exceptions import AuthenticationFailed
 from blog_service.models import Entry, EntryStats
 import jwt
