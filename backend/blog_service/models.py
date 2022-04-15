@@ -19,15 +19,13 @@ class Entry(models.Model):
 
 
 
-
-
 class EntryStats(models.Model):
     """Model that stores amount of every user"""
     
     entry_date_created = models.DateTimeField(auto_now_add=True)
     entry_author_name = models.ForeignKey(User, on_delete=models.CASCADE)
     entry_amount = models.IntegerField(validators=[
-        MaxValueValidator(255)
+        MaxValueValidator(4096)
     ],
     default=0)
 

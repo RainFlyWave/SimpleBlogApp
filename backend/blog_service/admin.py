@@ -22,3 +22,4 @@ class WpisAdmin(admin.ModelAdmin):
 
 admin.site.register(EntryStats)
 
+

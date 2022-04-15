@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 import { Dropdown, Offcanvas, Spinner, Button } from 'react-bootstrap';
+import { UserProfileDetails } from './UserProfileDetails';
 
-export const UserProfile = () => {
+export const UserProfile = ({ userData }) => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -16,8 +17,7 @@ export const UserProfile = () => {
                     <Offcanvas.Title>Customize your profile</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
+                    {JSON.stringify(userData)}
                 </Offcanvas.Body>
             </Offcanvas>
         </div>

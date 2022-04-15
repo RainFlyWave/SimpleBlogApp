@@ -60,7 +60,7 @@ export const Introduction = () => {
                     </li>
                     <li>
                         {/* {isAuth ? <Logout isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />} */}
-                        {isAuth ? <Settings isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />}
+                        {isAuth ? <Settings isAuth={isAuth} setIsAuth={setIsAuth} userData={userData} /> : <SignUp setIsAuth={setIsAuth} />}
                     </li>
                 </ul>
             </nav>

@@ -1,7 +1,6 @@
 
-import json
-from django.http import HttpResponse
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
 from blog_service.serializers import UserSerializer, EntrySerializer
@@ -144,10 +143,8 @@ class CreateEntryView(APIView):
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('Unauthenticated access')
 
-        #   If everything is allright, send appropriate response
+        # variable that stores current User object
         user = User.objects.get(id=payload['id'])
-        entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
-        entry.save()
 
         # check if entry_stats model exists for day that user posted blog entry
         # print(datetime.datetime.now().date())
@@ -155,6 +152,12 @@ class CreateEntryView(APIView):
             entry_stats = EntryStats.objects.filter(entry_author_name=user).order_by('-entry_date_created').first()
             if entry_stats.entry_date_created.date() == datetime.datetime.now().date():
                 # if object exists, add 1 to an existing value of entry_amount
+                if entry_stats.entry_amount >= 4096:
+                    print("Essa")
+                    response_data={
+                    "reponse": "You have reached maximum amount of entries for today. Take a quick nap."
+                    }
+                    return Response(response_data, status=status.HTTP_406_NOT_ACCEPTABLE)
                 entry_stats.entry_amount = entry_stats.entry_amount + 1
                 entry_stats.save()
 
@@ -164,6 +167,9 @@ class CreateEntryView(APIView):
             # entry_amount starts at the value of 1
             EntryStats(entry_author_name=user, entry_amount=1).save()
 
+        
+        entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
+        entry.save()
 
         response_data={
             "reponse": "Entry created"
