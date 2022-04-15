@@ -1,5 +1,6 @@
+from dataclasses import fields
 from rest_framework import serializers
-from blog_service.models import Entry
+from blog_service.models import Entry, UserDetails
 from django.contrib.auth.models import User
 
 
@@ -29,3 +30,8 @@ class EntrySerializer(serializers.ModelSerializer):
         model = Entry
         fields = ['pk','author_name', 'blog_entry', 'date_created']
 
+class DetailsSerializer(serializers.ModelSerializer):
+    username = UserSerializer()
+    class Meta:
+        model = UserDetails
+        fields = ['username', 'profile_pic', 'is_banned']

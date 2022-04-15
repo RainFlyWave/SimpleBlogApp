@@ -16,31 +16,23 @@ export const Introduction = () => {
     const [userData, setUserData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(authenticate(Cookies.get('isAuth')));
-    let isfetched = false;
+
 
 
     const goFetch = async () => {
         await axios.get('http://127.0.0.1:8000/api/user/')
             .then(({ data }) => {
                 setUserData(data);
+                console.log(data);
                 setIsLoading(false);
-                isfetched = true;
+
             })
             .catch((err) => {
                 setIsAuth(Cookies.set('isAuth', false));
             })
     }
 
-
-
-
     useEffect(() => {
-        if (isAuth == true && isfetched == false) {
-            goFetch();
-
-        }
-
-
     }, [isAuth]);
 
 

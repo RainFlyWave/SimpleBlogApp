@@ -11,6 +11,9 @@ class UserDetails(models.Model):
     profile_pic = models.ImageField(upload_to='images/')
     is_banned = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.username}"
+
 class Entry(models.Model):
     author_name = models.ForeignKey(User, on_delete=models.CASCADE)
     blog_entry = models.TextField(max_length=512)
@@ -27,4 +30,7 @@ class EntryStats(models.Model):
         MaxValueValidator(4096)
     ],
     default=0)
+
+    def __str__(self):
+        return f"{self.pk}: {self.entry_author_name}"
 

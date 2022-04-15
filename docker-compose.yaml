@@ -26,7 +26,7 @@ services:
     volumes:
       - ./pgadmin_data:/var/lib/pgadmin
     ports:
-      - 2137:80
+      - 2237:80
       - 443:443
     depends_on:
       - db

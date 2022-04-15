@@ -17,6 +17,9 @@ export const UserProfile = ({ userData }) => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     {/* Remove passing props.userData from parent element */}
+
+
+
                     {JSON.stringify(userData)}
                 </Offcanvas.Body>
             </Offcanvas>

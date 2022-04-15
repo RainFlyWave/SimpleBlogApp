@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Entry, EntryStats
+from .models import Entry, EntryStats, UserDetails
 
 @admin.register(Entry)
 class WpisAdmin(admin.ModelAdmin):
@@ -21,5 +21,5 @@ class WpisAdmin(admin.ModelAdmin):
     date_serialization.short_description = 'Date Created'
 
 admin.site.register(EntryStats)
-
+admin.site.register(UserDetails)
 

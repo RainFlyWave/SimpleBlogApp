@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
-from blog_service.serializers import UserSerializer, EntrySerializer
+from blog_service.models import UserDetails
+from blog_service.serializers import UserSerializer, EntrySerializer, DetailsSerializer
 # from django.contrib.auth.models import User
 from blog_service.models import User
 from rest_framework.exceptions import AuthenticationFailed
@@ -21,6 +22,9 @@ class RegisterView(APIView):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        user = User.objects.get(username=serializer.validated_data["username"])
+        detail_user = UserDetails(username=user)
+        detail_user.save()
         return Response(serializer.data)
 
 
@@ -82,9 +86,9 @@ class UserView(APIView):
 
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
-        print(type(user))
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+        details = DetailsSerializer(UserDetails.objects.get(username=user))
+        print(details.data)
+        return Response(details.data)
 
 class LogoutView(APIView):
 
