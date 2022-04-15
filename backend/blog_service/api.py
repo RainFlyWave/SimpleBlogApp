@@ -147,23 +147,24 @@ class CreateEntryView(APIView):
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
         entry = Entry(author_name=user,blog_entry=request.data['blog_entry'])
+        entry.save()
 
         # check if entry_stats model exists for day that user posted blog entry
         # print(datetime.datetime.now().date())
         try:
-            entry_stats = EntryStats.objects.filter(entry_author_name=user).order_by('-entry_date_created').first().entry_date_created.date()
-            if entry_stats == datetime.datetime.now().date():
-                # entry_stats_amount = EntryStats.objects.get()
-                print(f"Stats: {entry_stats}")
-                # entry_stats_incremented = entry_stats.entry_amount
+            entry_stats = EntryStats.objects.filter(entry_author_name=user).order_by('-entry_date_created').first()
+            if entry_stats.entry_date_created.date() == datetime.datetime.now().date():
+                # if object exists, add 1 to an existing value of entry_amount
+                entry_stats.entry_amount = entry_stats.entry_amount + 1
+                entry_stats.save()
+
                 
         except AttributeError:
-            pass
-        else:
-            pass
-        # entry_stats_filtered = EntryStats.objects.get()
-        # entry_stats = EntryStats(entry_author_name=user)
-        entry.save()
+            # if record doesnt exist, create a new one
+            # entry_amount starts at the value of 1
+            EntryStats(entry_author_name=user, entry_amount=1).save()
+
+
         response_data={
             "reponse": "Entry created"
         }
