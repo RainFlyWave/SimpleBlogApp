@@ -150,7 +150,17 @@ class CreateEntryView(APIView):
 
         # check if entry_stats model exists for day that user posted blog entry
         # print(datetime.datetime.now().date())
-        
+        try:
+            entry_stats = EntryStats.objects.filter(entry_author_name=user).order_by('-entry_date_created').first().entry_date_created.date()
+            if entry_stats == datetime.datetime.now().date():
+                # entry_stats_amount = EntryStats.objects.get()
+                print(f"Stats: {entry_stats}")
+                # entry_stats_incremented = entry_stats.entry_amount
+                
+        except AttributeError:
+            pass
+        else:
+            pass
         # entry_stats_filtered = EntryStats.objects.get()
         # entry_stats = EntryStats(entry_author_name=user)
         entry.save()
