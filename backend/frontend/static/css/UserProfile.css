@@ -1,0 +1,26 @@
+.profile-picture-wrapper {
+  width: 100%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: auto;
+  outline: 6px solid black;
+}
+/*# sourceMappingURL=UserProfile.css.map */

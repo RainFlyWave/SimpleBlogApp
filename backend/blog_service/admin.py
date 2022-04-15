@@ -42,8 +42,9 @@ class EntryStatsDetails(admin.ModelAdmin):
 
     class Meta:
         ordering = ('entry_date_created',)
+
     entry_author_name.short_description = 'Author'
-    entry_date_created.short_description = "Data"
+    entry_date_created.short_description = "Date"
     
 
 

@@ -18,20 +18,6 @@ export const Introduction = () => {
     const [isAuth, setIsAuth] = useState(authenticate(Cookies.get('isAuth')));
 
 
-
-    const goFetch = async () => {
-        await axios.get('http://127.0.0.1:8000/api/user/')
-            .then(({ data }) => {
-                setUserData(data);
-                console.log(data);
-                setIsLoading(false);
-
-            })
-            .catch((err) => {
-                setIsAuth(Cookies.set('isAuth', false));
-            })
-    }
-
     useEffect(() => {
     }, [isAuth]);
 
@@ -52,7 +38,7 @@ export const Introduction = () => {
                     </li>
                     <li>
                         {/* {isAuth ? <Logout isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />} */}
-                        {isAuth ? <Settings isAuth={isAuth} setIsAuth={setIsAuth} userData={userData} /> : <SignUp setIsAuth={setIsAuth} />}
+                        {isAuth ? <Settings isAuth={isAuth} setIsAuth={setIsAuth} /> : <SignUp setIsAuth={setIsAuth} />}
                     </li>
                 </ul>
             </nav>
