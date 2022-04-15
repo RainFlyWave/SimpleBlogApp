@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from blog_service.models import Entry
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+
 
 
 

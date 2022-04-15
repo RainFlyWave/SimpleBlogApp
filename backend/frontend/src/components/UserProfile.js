@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import { Dropdown, Offcanvas, Spinner, Button } from 'react-bootstrap';
-import { UserProfileDetails } from './UserProfileDetails';
 
 export const UserProfile = ({ userData }) => {
 
@@ -17,6 +16,7 @@ export const UserProfile = ({ userData }) => {
                     <Offcanvas.Title>Customize your profile</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
+                    {/* Remove passing props.userData from parent element */}
                     {JSON.stringify(userData)}
                 </Offcanvas.Body>
             </Offcanvas>
