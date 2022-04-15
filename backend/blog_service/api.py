@@ -1,4 +1,5 @@
 
+from turtle import update
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -220,3 +221,48 @@ class EditEntryView(APIView):
         entry.save()
         
         return Response({"response": "Entry updated successfully"})
+
+class UploadPhotoView(APIView):
+    def post(self,request):
+        token = request.COOKIES.get('token')
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+        
+        #   If everything is allright, send appropriate response
+        photo = request.data['photo']
+        print(photo)
+        user = User.objects.get(id=payload['id'])
+        updated_photo = UserDetails.objects.get(username=user)
+        updated_photo.profile_pic = photo
+        updated_photo.save()
+        
+        return Response({"response": "Photo updated successfully"})
+
+class UserDescriptionView(APIView):
+    def post(self,request):
+        token = request.COOKIES.get('token')
+        #   Send a message if token doesnt exist
+        if not token:
+            raise AuthenticationFailed('Unauthenticated access')
+
+        #   Try to decode existing token, and check if valid
+        try:
+            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated access')
+        
+        #   If everything is allright, send appropriate response
+        description = request.data['description']
+        user = User.objects.get(id=payload['id'])
+        updated_description = UserDetails.objects.get(username=user)
+        updated_description.user_description = description
+        updated_description.save()
+        
+        return Response({"response": "Description updated successfully"})

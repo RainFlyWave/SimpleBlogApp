@@ -34,4 +34,4 @@ class DetailsSerializer(serializers.ModelSerializer):
     username = UserSerializer()
     class Meta:
         model = UserDetails
-        fields = ['username', 'profile_pic', 'is_banned']
+        fields = ['username', 'profile_pic', 'is_banned','user_description']

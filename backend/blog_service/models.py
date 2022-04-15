@@ -11,6 +11,7 @@ class UserDetails(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to='images/',blank=True)
     is_banned = models.BooleanField(default=False)
+    user_description = models.TextField(max_length=500,default="")
 
     def __str__(self):
         return f"{self.username}"
