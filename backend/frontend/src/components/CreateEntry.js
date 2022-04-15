@@ -13,6 +13,10 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+    const [modalMessage, setModalMessage] = useState('');
+
+
     const sendEntry = async () => {
 
 
@@ -21,7 +25,7 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
             await axios.post('http://127.0.0.1:8000/api/create/', {
                 "blog_entry": createdEntry
             })
-                .then(({ data }) => {
+                .then((data) => {
                     console.log("create Entry");
                     setTimeout(() => {
                         setIsLoading(false);
@@ -29,16 +33,22 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
                     }, 2000);
 
 
-                })
-                .catch((err) => {
-                    console.error(err.response.status);
+                }, (err) => {
+
                     setIsLoading(false);
                     if (err.response.status == 403) {
                         axios.post('http://127.0.0.1:8000/api/logout/')
                     }
+
+                    if (err.response.status === 406) {
+                        setModalMessage("You have reached maximum amount of entries for today. Take a quick nap.");
+                        handleShow();
+                    }
                 })
+
         }
         else {
+            setModalMessage("Please, enter at least one character!");
             handleShow();
         }
 
@@ -77,7 +87,7 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
                 <Modal.Header closeButton>
                     <Modal.Title>Alert</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Please, enter at least one character!</Modal.Body>
+                <Modal.Body>{modalMessage}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
