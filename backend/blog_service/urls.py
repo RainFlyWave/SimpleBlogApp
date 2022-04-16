@@ -20,7 +20,7 @@ urlpatterns = [
     path('delete/',DeleteEntryView.as_view()),
     path('edit/',EditEntryView.as_view()),
     path('upload/', UploadPhotoView.as_view()),
-    path('description/', UserDescriptionView.as_view()),
+    path('details/', UserDescriptionView.as_view()),
 
 
 ]

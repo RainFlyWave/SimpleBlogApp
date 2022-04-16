@@ -3,12 +3,14 @@ import { Form, Button, Modal, Spinner } from 'react-bootstrap'
 import { useState } from 'react';
 import axios from 'axios';
 
-export const ChangePhoto = ({ goFetch }) => {
+export const ChangePhoto = ({ goFetch, style }) => {
 
     const [show, setShow] = useState(false);
     const [userPhoto, setUserPhoto] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -19,32 +21,26 @@ export const ChangePhoto = ({ goFetch }) => {
 
     const handleSubmit = () => {
 
-
         if (userPhoto != undefined) {
             for (let i of restrictedFormats) {
                 if (userPhoto.name.endsWith(i)) {
                     setIsError('');
                     handlePost();
-
                     break;
-
                 }
                 else {
                     const message = `You can only upload images! Allowed formats are: ${restrictedFormats.join(", ")}`;
                     setIsError(message)
                 }
-
             }
-
-
         }
-
 
     }
     const handlePost = async () => {
         setIsLoading(true);
         const uploadData = new FormData();
         uploadData.append('photo', userPhoto);
+
         await axios.post('http://127.0.0.1:8000/api/upload/', uploadData)
             .then(({ data }) => {
                 setTimeout(() => {
@@ -59,7 +55,7 @@ export const ChangePhoto = ({ goFetch }) => {
     return (
         <div>
 
-            <Button variant="success" className='upload-photo' onClick={handleShow}>
+            <Button style={style} variant="success" className='upload-photo' onClick={handleShow}>
                 Upload your photo
             </Button>
 
@@ -78,7 +74,7 @@ export const ChangePhoto = ({ goFetch }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success" onClick={handleSubmit}>
+                    <Button style={style} variant="success" onClick={handleSubmit}>
                         {isLoading &&
                             <Spinner size="sm" animation="border" variant="dark" role="status">
                                 <span className="visually-hidden">Loading... </span>

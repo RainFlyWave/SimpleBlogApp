@@ -6,7 +6,8 @@ import { CreateEntry } from './CreateEntry';
 import { ExampleCreateEntry } from './ExampleCreateEntry';
 import { ExampleEntries } from './ExampleEntries';
 import { NavigateButton } from './NavigateButton';
-export const LoggedIn = () => {
+import { authenticate } from '../contexts/Authenticate';
+export const LoggedIn = ({ setIsAuth }) => {
 
     const [entryData, setEntryData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +28,13 @@ export const LoggedIn = () => {
                 if (isCreated == true) {
                     setIsCreated(false);
                 }
-            })
+            },
+                (err) => {
+                    console.log("LOGGEDIN.JS" + err.response.status)
+                    if (err.response.status == 403) {
+                        setIsAuth(false)
+                    }
+                })
     }
 
     useEffect(() => {

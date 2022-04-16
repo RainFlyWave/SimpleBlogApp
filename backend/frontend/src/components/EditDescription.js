@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 import axios from 'axios';
-export const EditDescription = ({ userData, goFetch }) => {
+export const EditDescription = ({ userData, goFetch, style }) => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => {
@@ -19,7 +19,7 @@ export const EditDescription = ({ userData, goFetch }) => {
 
     const handlePost = async () => {
         setIsLoading(true);
-        await axios.post('http://127.0.0.1:8000/api/description/', {
+        await axios.post('http://127.0.0.1:8000/api/details/', {
             "description": isDescription
         })
             .then(({ data }) => {
@@ -30,6 +30,13 @@ export const EditDescription = ({ userData, goFetch }) => {
                     handleClose();
                 }, 2000)
             })
+            .catch(error => {
+                console.error(error.response.status)
+                if (error.response.status == '403') {
+                    console.log("editing error")
+                }
+                setisLoading(false);
+            });
     }
 
 
@@ -37,7 +44,7 @@ export const EditDescription = ({ userData, goFetch }) => {
 
     return (
         <div>
-            <Button variant="success" className='edit-description' onClick={handleShow}>
+            <Button style={style} variant="success" className='edit-description' onClick={handleShow}>
                 Edit description
             </Button>
 
@@ -65,7 +72,7 @@ export const EditDescription = ({ userData, goFetch }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success" onClick={handlePost}>
+                    <Button style={style} variant="success" onClick={handlePost}>
                         {isLoading &&
                             <Spinner size="sm" animation="border" variant="dark" role="status">
                                 <span className="visually-hidden">Loading... </span>

@@ -6,7 +6,7 @@ import { UserProfile } from './UserProfile'
 export const Settings = ({ isAuth, setIsAuth }) => {
     return (
         <DropdownButton id="dropdown-item-button" variant='light' title="Settings">
-            <UserProfile />
+            <UserProfile setIsAuth={setIsAuth} />
             <Logout isAuth={isAuth} setIsAuth={setIsAuth} />
         </DropdownButton>
     )

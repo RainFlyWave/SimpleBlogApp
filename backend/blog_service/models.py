@@ -9,7 +9,7 @@ from pkg_resources import require
 
 class UserDetails(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='images/',blank=True)
+    profile_pic = models.ImageField(upload_to='images/' ,default='images/default.png')
     is_banned = models.BooleanField(default=False)
     user_description = models.TextField(max_length=500,default="")
     user_profile_color = models.CharField(max_length=7, default="#000000")

@@ -17,3 +17,10 @@
 .upload-photo {
     margin: 0.5rem;
 }
+
+.profile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

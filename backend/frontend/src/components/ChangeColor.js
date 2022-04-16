@@ -1,18 +1,32 @@
 import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
-import { ThemeContext } from './App';
-import { useContext } from 'react';
+import axios from 'axios';
 
-export const ChangeColor = ({ profileColor, setProfileColor }) => {
+
+export const ChangeColor = ({ goFetch, profileColor, setProfileColor, style }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [isLoading, setIsLoading] = useState(false);
 
+    const postChangedColor = async () => {
+        setIsLoading(true)
+        await axios.post('http://127.0.0.1:8000/api/details/', {
+            themeColor: profileColor,
+        })
+            .then(({ data }) => {
+                setTimeout(() => {
+                    setIsLoading(false);
+                    goFetch();
+                    handleClose();
+                }, 2000)
+            })
+    }
 
     return (
         <div>
-            <Button variant="success" className='upload-photo' onClick={handleShow}>
+            <Button style={style} variant="success" className='upload-photo' onClick={handleShow}>
                 Customize profile
             </Button>
 
@@ -36,7 +50,7 @@ export const ChangeColor = ({ profileColor, setProfileColor }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button style={style} variant="success" onClick={postChangedColor}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

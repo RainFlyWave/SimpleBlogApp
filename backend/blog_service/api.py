@@ -156,6 +156,7 @@ class CreateEntryView(APIView):
         try:
             entry_stats = EntryStats.objects.filter(entry_author_name=user).order_by('-entry_date_created').first()
             if entry_stats.entry_date_created.date() == datetime.datetime.now().date():
+                
                 # if object exists, add 1 to an existing value of entry_amount
                 if entry_stats.entry_amount >= 4096:
                     response_data={
@@ -164,8 +165,8 @@ class CreateEntryView(APIView):
                     return Response(response_data, status=status.HTTP_406_NOT_ACCEPTABLE)
                 entry_stats.entry_amount = entry_stats.entry_amount + 1
                 entry_stats.save()
-
-                
+            else:
+                EntryStats.objects.create(entry_author_name=user, entry_amount=1).save()
         except AttributeError:
             # if record doesnt exist, create a new one
             # entry_amount starts at the value of 1
@@ -232,15 +233,17 @@ class UploadPhotoView(APIView):
             payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('Unauthenticated access')
+
+       
         
         #   If everything is allright, send appropriate response
-        photo = request.data['photo']
-
+        
         user = User.objects.get(id=payload['id'])
         updated_photo = UserDetails.objects.get(username=user)
+        photo = request.data['photo']
         updated_photo.profile_pic = photo
         updated_photo.save()
-        
+
         return Response({"response": "Photo updated successfully"})
 
 class UserDescriptionView(APIView):
@@ -257,10 +260,20 @@ class UserDescriptionView(APIView):
             raise AuthenticationFailed('Unauthenticated access')
         
         #   If everything is allright, send appropriate response
-        description = request.data['description']
+        
         user = User.objects.get(id=payload['id'])
         updated_description = UserDetails.objects.get(username=user)
-        updated_description.user_description = description
-        updated_description.save()
+        if 'description' in request.data.keys():
+            description = request.data['description']
+            updated_description.user_description = description
+            updated_description.save()
         
+        if 'themeColor' in request.data.keys():
+            color = request.data['themeColor']
+            print(color)
+            updated_description.user_profile_color = color
+            print(updated_description.user_profile_color)
+            updated_description.save()
+
         return Response({"response": "Description updated successfully"})
+

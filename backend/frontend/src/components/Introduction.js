@@ -50,7 +50,7 @@ export const Introduction = () => {
                 <div className='introduction-header'>
 
                     <div className='introduction-maintext'>
-                        {isAuth ? <LoggedIn /> : <NotLoggedIn />}
+                        {isAuth ? <LoggedIn setIsAuth={setIsAuth} /> : <NotLoggedIn />}
                     </div>
 
 
