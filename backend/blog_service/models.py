@@ -12,6 +12,7 @@ class UserDetails(models.Model):
     profile_pic = models.ImageField(upload_to='images/',blank=True)
     is_banned = models.BooleanField(default=False)
     user_description = models.TextField(max_length=500,default="")
+    user_profile_color = models.CharField(max_length=7, default="#000000")
 
     def __str__(self):
         return f"{self.username}"

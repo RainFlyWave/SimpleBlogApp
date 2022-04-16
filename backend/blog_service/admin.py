@@ -24,7 +24,7 @@ class WpisAdmin(admin.ModelAdmin):
 
 @admin.register(UserDetails)
 class UserDetailsAdmin(admin.ModelAdmin):
-    list_display = ('username', 'profile_pic', 'is_banned')
+    list_display = ('username', 'profile_pic', 'is_banned','user_profile_color')
     list_filter = ('is_banned',)
 
 @admin.register(EntryStats)

@@ -11,6 +11,7 @@ import { Settings } from './Settings';
 
 
 
+
 export const Introduction = () => {
 
     const [userData, setUserData] = useState([]);
@@ -18,8 +19,10 @@ export const Introduction = () => {
     const [isAuth, setIsAuth] = useState(authenticate(Cookies.get('isAuth')));
 
 
+
     useEffect(() => {
     }, [isAuth]);
+
 
 
 

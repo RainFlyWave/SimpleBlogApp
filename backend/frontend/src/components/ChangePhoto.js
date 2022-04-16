@@ -44,10 +44,9 @@ export const ChangePhoto = ({ goFetch }) => {
     const handlePost = async () => {
         setIsLoading(true);
         const uploadData = new FormData();
-        uploadData.append('photo', userPhoto, userPhoto.name);
+        uploadData.append('photo', userPhoto);
         await axios.post('http://127.0.0.1:8000/api/upload/', uploadData)
             .then(({ data }) => {
-                console.log(data);
                 setTimeout(() => {
                     setIsLoading(false);
                     goFetch();

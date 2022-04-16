@@ -88,7 +88,6 @@ class UserView(APIView):
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
         details = DetailsSerializer(UserDetails.objects.get(username=user))
-        print(details.data)
         return Response(details.data)
 
 class LogoutView(APIView):
@@ -159,7 +158,6 @@ class CreateEntryView(APIView):
             if entry_stats.entry_date_created.date() == datetime.datetime.now().date():
                 # if object exists, add 1 to an existing value of entry_amount
                 if entry_stats.entry_amount >= 4096:
-                    print("Essa")
                     response_data={
                     "reponse": "You have reached maximum amount of entries for today. Take a quick nap."
                     }
@@ -237,7 +235,7 @@ class UploadPhotoView(APIView):
         
         #   If everything is allright, send appropriate response
         photo = request.data['photo']
-        print(photo)
+
         user = User.objects.get(id=payload['id'])
         updated_photo = UserDetails.objects.get(username=user)
         updated_photo.profile_pic = photo
