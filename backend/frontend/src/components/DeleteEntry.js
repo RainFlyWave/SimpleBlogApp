@@ -29,11 +29,9 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
 
         })
             .then(({ data }) => {
-
                 console.log("delete fetch");
                 setIsSpinning(true);
                 setIsError(false);
-
                 setTimeout(() => {
                     setIsCreated(true);
                     setIsLoading(false)
@@ -78,24 +76,19 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
                         </Card.Body>
                     </Card>
                     {isError ? <p>An error has occured</p> : null}
-                    <div className='login-spinner'>
-                        <div className='login-message'>
-                            {isSpinning ? 'Deleting entry...  ' : null}
-                        </div>
-                        {isSpinning ?
-                            <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                            : null
-                        }
 
-                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                         Cancel
                     </Button>
                     <Button variant="danger" onClick={deleteEntry} disabled={isLoading}>
+                        {isLoading &&
+                            <Spinner size="sm" animation="border" variant="dark" role="status">
+                                <span className="visually-hidden">Loading... </span>
+                            </Spinner>
+                        }
+                        {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
                         Delete
                     </Button>
                 </Modal.Footer>

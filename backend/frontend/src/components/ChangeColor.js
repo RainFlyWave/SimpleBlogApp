@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -51,6 +51,12 @@ export const ChangeColor = ({ goFetch, profileColor, setProfileColor, style }) =
                         Close
                     </Button>
                     <Button style={style} variant="success" onClick={postChangedColor}>
+                        {isLoading &&
+                            <Spinner size="sm" animation="border" variant="dark" role="status">
+                                <span className="visually-hidden">Loading... </span>
+                            </Spinner>
+                        }
+                        {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
                         Save Changes
                     </Button>
                 </Modal.Footer>

@@ -13,37 +13,41 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const [isSpinning, setIsSpinning] = useState();
     const handleShow = () => {
         setShow(true)
         setIsError(false)
     }
     const [isLoading, setIsLoading] = useState();
-    const [isError, setIsError] = useState();
+    const [isError, setIsError] = useState(false);
     const [editedEntry, setEditedEntry] = useState('');
     const editEntry = async () => {
         setIsLoading(true)
-        await axios.post('http://127.0.0.1:8000/api/edit/', {
-            "pk": entryId,
-            "entry": editedEntry
-        })
-            .then(({ data }) => {
+        setIsError(false);
+        if (editedEntry.length <= 0) {
+            setIsLoading(false)
+        }
+        else {
+            await axios.post('http://127.0.0.1:8000/api/edit/', {
+                "pk": entryId,
+                "entry": editedEntry
+            })
+                .then(({ data }) => {
+                    setIsSpinning(true);
+                    setTimeout(() => {
+                        setIsSpinning(false);
+                        setIsCreated(true);
+                        setIsLoading(false)
+                        handleClose();
+                    }, 2000)
 
-                setIsError(false);
-                setIsSpinning(true);
-                setTimeout(() => {
-                    setIsSpinning(false);
-                    setIsCreated(true);
+                })
+                .catch((err) => {
+                    console.error(err);
                     setIsLoading(false)
-                    handleClose();
-                }, 2000)
-
-            })
-            .catch((err) => {
-                console.error(err);
-                setIsLoading(false)
-                setIsError(true);
-            })
+                    setIsError(true);
+                    console.log(editedEntry.length)
+                })
+        }
 
     }
 
@@ -84,24 +88,18 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
                         </FloatingLabel>
                     </Card>
                     {isError ? <p>An error has occured</p> : null}
-                    <div className='login-spinner'>
-                        <div className='login-message'>
-                            {isSpinning ? 'Editing entry...  ' : null}
-                        </div>
-                        {isSpinning ?
-                            <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                            : null
-                        }
-
-                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose} disabled={isLoading}>
                         Cancel
                     </Button>
                     <Button variant="success" onClick={editEntry} disabled={isLoading}>
+                        {isLoading &&
+                            <Spinner size="sm" animation="border" variant="dark" role="status">
+                                <span className="visually-hidden">Loading... </span>
+                            </Spinner>
+                        }
+                        {isLoading && <span> </span>} {/* Created only to increate space between text and spinner */}
                         Edit
                     </Button>
                 </Modal.Footer>
