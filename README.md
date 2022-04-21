@@ -23,5 +23,5 @@
 - User can post a blog entry 
 - User can edit a blog entry
 - User can delete a blog entry 
-
+- [NEW!] User can add profile photo and change color of his profile theme 
 
