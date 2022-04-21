@@ -2,14 +2,21 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator
-from pkg_resources import require
+import uuid
+import os
 
 
 
+def path_to_rename(instance, filename):
+    new_format = filename.split('.')[-1]
+    new_filename = f'{uuid.uuid4()}.{new_format}'
+    while os.path.exists(f'images/{new_filename}'):
+        new_filename = f'{uuid.uuid4()}.{new_format}'
+    return f'images/{new_filename}'
 
 class UserDetails(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='images/' ,default='images/default.png')
+    profile_pic = models.ImageField(upload_to=path_to_rename ,default='images/default.png')
     is_banned = models.BooleanField(default=False)
     user_description = models.TextField(max_length=500,default="",blank=True)
     user_profile_color = models.CharField(max_length=7, default="#000000")
