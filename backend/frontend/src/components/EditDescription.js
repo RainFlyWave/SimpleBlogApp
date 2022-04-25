@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
+
 export const EditDescription = ({ userData, goFetch, style }) => {
 
     const [show, setShow] = useState(false);
@@ -19,7 +21,7 @@ export const EditDescription = ({ userData, goFetch, style }) => {
 
     const handlePost = async () => {
         setIsLoading(true);
-        await axios.post('http://127.0.0.1:8000/api/details/', {
+        await axios.post(`${URL}:8000/api/details/`, {
             "description": isDescription
         })
             .then(({ data }) => {

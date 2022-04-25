@@ -6,6 +6,7 @@ import { ChangePhoto } from './ChangePhoto';
 import { EditDescription } from './EditDescription';
 import { ChangeColor } from './ChangeColor';
 import { authenticate } from '../contexts/Authenticate';
+import { URL } from '../contexts/UrlVar'
 
 
 
@@ -28,7 +29,7 @@ export const UserProfile = ({ setIsAuth }) => {
 
 
     const goFetch = async () => {
-        await axios.get('http://127.0.0.1:8000/api/user/')
+        await axios.get(`${URL}:8000/api/user/`)
             .then(({ data }) => {
                 setUserData(data);
                 console.log(data);

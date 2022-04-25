@@ -60,10 +60,8 @@ class LoginView(APIView):
 
         # Create HttpOnly cookie with token
         response.set_cookie(key='token', value=token, httponly=True)
-        response.set_cookie(key='isAuth', value='true', httponly=False)
         response.data = {
             'token': token,
-            
         }
 
         return response

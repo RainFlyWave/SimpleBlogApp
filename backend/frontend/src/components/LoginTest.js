@@ -3,7 +3,7 @@ import { Form, Button, Badge, InputGroup, Col, Modal, Spinner, Offcanvas } from 
 import { useNavigate, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { authenticate } from '../contexts/Authenticate';
+import { URL } from '../contexts/UrlVar'
 
 
 export const LoginTest = ({ setIsAuth }) => {
@@ -34,8 +34,7 @@ export const LoginTest = ({ setIsAuth }) => {
 
         setisLoading(true);
         await axios
-            .post('http://127.0.0.1:8000/api/login/', loginData, {
-            })
+            .post(`${URL}:8000/api/login/`, loginData, { withCredentials: true })
             .then(({ data }) => {
                 console.log("login tests");
                 setIsSpinning(true);

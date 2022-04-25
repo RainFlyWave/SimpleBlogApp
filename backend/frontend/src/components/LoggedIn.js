@@ -6,7 +6,8 @@ import { CreateEntry } from './CreateEntry';
 import { ExampleCreateEntry } from './ExampleCreateEntry';
 import { ExampleEntries } from './ExampleEntries';
 import { NavigateButton } from './NavigateButton';
-import { authenticate } from '../contexts/Authenticate';
+import { URL } from '../contexts/UrlVar'
+
 export const LoggedIn = ({ setIsAuth }) => {
 
     const [entryData, setEntryData] = useState([]);
@@ -19,7 +20,7 @@ export const LoggedIn = ({ setIsAuth }) => {
     const entryDataPreviousPage = entryData.previous;
 
 
-    const fetchData = async (url = 'http://127.0.0.1:8000/api/entries/') => {
+    const fetchData = async (url = `${URL}:8000/api/entries/`) => {
         setIsLoading(true);
         await axios.get(url)
             .then(({ data }) => {

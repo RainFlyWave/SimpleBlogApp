@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button, Modal, Spinner } from 'react-bootstrap'
 import { useState } from 'react';
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
 
 export const ChangePhoto = ({ goFetch, style }) => {
 
@@ -41,7 +42,7 @@ export const ChangePhoto = ({ goFetch, style }) => {
         const uploadData = new FormData();
         uploadData.append('photo', userPhoto);
 
-        await axios.post('http://127.0.0.1:8000/api/upload/', uploadData)
+        await axios.post(`${URL}:8000/api/upload/`, uploadData)
             .then(({ data }) => {
                 setTimeout(() => {
                     setIsLoading(false);

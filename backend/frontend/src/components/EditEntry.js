@@ -3,6 +3,7 @@ import { Button, Modal, Card, FloatingLabel, Form, Spinner } from 'react-bootstr
 import { useState } from 'react';
 import { convertDate } from './../contexts/Authenticate'
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
 
 export const EditEntry = ({ editPost, setIsCreated }) => {
     const entryAuthor = editPost.author_name.username;
@@ -27,7 +28,7 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
             setIsLoading(false)
         }
         else {
-            await axios.post('http://127.0.0.1:8000/api/edit/', {
+            await axios.post(`${URL}:8000/api/edit/`, {
                 "pk": entryId,
                 "entry": editedEntry
             })

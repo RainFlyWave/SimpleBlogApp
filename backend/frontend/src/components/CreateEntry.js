@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FloatingLabel, Form, Button, Modal, Spinner } from 'react-bootstrap';
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
 
 
 export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => {
@@ -22,7 +23,7 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
 
         if (createdEntry.length > 0) {
             setIsLoading(true);
-            await axios.post('http://127.0.0.1:8000/api/create/', {
+            await axios.post(`${URL}:8000/api/create/`, {
                 "blog_entry": createdEntry
             })
                 .then((data) => {

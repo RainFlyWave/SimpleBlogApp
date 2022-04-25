@@ -2,6 +2,7 @@ import React from 'react'
 import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
 
 
 export const ChangeColor = ({ goFetch, profileColor, setProfileColor, style }) => {
@@ -12,7 +13,7 @@ export const ChangeColor = ({ goFetch, profileColor, setProfileColor, style }) =
 
     const postChangedColor = async () => {
         setIsLoading(true)
-        await axios.post('http://127.0.0.1:8000/api/details/', {
+        await axios.post(`${URL}:8000/api/details/`, {
             themeColor: profileColor,
         })
             .then(({ data }) => {

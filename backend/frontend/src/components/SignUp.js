@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { authenticate } from '../contexts/Authenticate';
 require('./../../static/css/Login.css');
+import { URL } from '../contexts/UrlVar'
 
 export const SignUp = ({ setIsAuth }) => {
 
@@ -39,13 +40,13 @@ export const SignUp = ({ setIsAuth }) => {
 
         setisLoading(true);
         await axios
-            .post('http://127.0.0.1:8000/api/register/', registerData, {
+            .post(`${URL}:8000/api/register/`, registerData, {
             })
             .then(({ data }) => {
                 setIsSpinning(true);
 
                 axios
-                    .post('http://127.0.0.1:8000/api/login/', registerData, {
+                    .post(`${URL}:8000/api/login/`, registerData, {
                     })
                     .then(({ data }) => {
                         setIsSpinning(true);

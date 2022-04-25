@@ -3,6 +3,7 @@ import { Button, Modal, Card, Spinner } from 'react-bootstrap'
 import { useState } from 'react';
 import { convertDate } from './../contexts/Authenticate'
 import axios from 'axios';
+import { URL } from '../contexts/UrlVar'
 
 export const DeleteEntry = ({ deletePost, setIsCreated }) => {
     const entryAuthor = deletePost.author_name.username;
@@ -23,7 +24,7 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
 
     const deleteEntry = async () => {
         setIsLoading(true)
-        await axios.post('http://127.0.0.1:8000/api/delete/', {
+        await axios.post(`${URL}:8000/api/delete/`, {
 
             "pk": entryId
 

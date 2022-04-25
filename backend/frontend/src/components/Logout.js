@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../contexts/Authenticate';
 import { Modal, Button, Spinner, DropdownButton, Dropdown } from 'react-bootstrap';
+import { URL } from '../contexts/UrlVar'
 
 
 export const Logout = ({ isAuth, setIsAuth }) => {
@@ -18,7 +19,7 @@ export const Logout = ({ isAuth, setIsAuth }) => {
     const handleShow = () => setShowLogout(true);
     const handleLogout = () => {
         handleShow();
-        axios.post('http://127.0.0.1:8000/api/logout/')
+        axios.post(`${URL}:8000/api/logout/`)
             .then(({ data }) => {
                 console.log("logout");
                 setTimeout(() => {
