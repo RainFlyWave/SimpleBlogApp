@@ -23,7 +23,7 @@ export const CreateEntry = ({ entriesCount, setIsCreated, isParentLoading }) => 
 
         if (createdEntry.length > 0) {
             setIsLoading(true);
-            await axios.post(`${URL}:8000/api/create/`, {
+            await axios.post(`${URL}/api/create/`, {
                 "blog_entry": createdEntry
             })
                 .then((data) => {

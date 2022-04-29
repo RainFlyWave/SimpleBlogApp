@@ -34,7 +34,7 @@ export const LoginTest = ({ setIsAuth }) => {
 
         setisLoading(true);
         await axios
-            .post(`${URL}:8000/api/login/`, loginData, { withCredentials: true })
+            .post(`${URL}/api/login/`, loginData, { withCredentials: true })
             .then(({ data }) => {
                 console.log("login tests");
                 setIsSpinning(true);

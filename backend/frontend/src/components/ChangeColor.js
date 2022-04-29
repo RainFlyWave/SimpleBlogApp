@@ -13,7 +13,7 @@ export const ChangeColor = ({ goFetch, profileColor, setProfileColor, style }) =
 
     const postChangedColor = async () => {
         setIsLoading(true)
-        await axios.post(`${URL}:8000/api/details/`, {
+        await axios.post(`${URL}/api/details/`, {
             themeColor: profileColor,
         })
             .then(({ data }) => {

@@ -20,7 +20,7 @@ export const LoggedIn = ({ setIsAuth }) => {
     const entryDataPreviousPage = entryData.previous;
 
 
-    const fetchData = async (url = `${URL}:8000/api/entries/`) => {
+    const fetchData = async (url = `${URL}/api/entries/`) => {
         setIsLoading(true);
         await axios.get(url)
             .then(({ data }) => {

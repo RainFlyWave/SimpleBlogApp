@@ -40,13 +40,13 @@ export const SignUp = ({ setIsAuth }) => {
 
         setisLoading(true);
         await axios
-            .post(`${URL}:8000/api/register/`, registerData, {
+            .post(`${URL}/api/register/`, registerData, {
             })
             .then(({ data }) => {
                 setIsSpinning(true);
 
                 axios
-                    .post(`${URL}:8000/api/login/`, registerData, {
+                    .post(`${URL}/api/login/`, registerData, {
                     })
                     .then(({ data }) => {
                         setIsSpinning(true);

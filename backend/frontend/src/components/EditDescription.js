@@ -21,7 +21,7 @@ export const EditDescription = ({ userData, goFetch, style }) => {
 
     const handlePost = async () => {
         setIsLoading(true);
-        await axios.post(`${URL}:8000/api/details/`, {
+        await axios.post(`${URL}/api/details/`, {
             "description": isDescription
         })
             .then(({ data }) => {

@@ -29,7 +29,7 @@ export const UserProfile = ({ setIsAuth }) => {
 
 
     const goFetch = async () => {
-        await axios.get(`${URL}:8000/api/user/`)
+        await axios.get(`${URL}/api/user/`)
             .then(({ data }) => {
                 setUserData(data);
                 console.log(data);

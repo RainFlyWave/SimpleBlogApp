@@ -19,7 +19,7 @@ export const Logout = ({ isAuth, setIsAuth }) => {
     const handleShow = () => setShowLogout(true);
     const handleLogout = () => {
         handleShow();
-        axios.post(`${URL}:8000/api/logout/`)
+        axios.post(`${URL}/api/logout/`)
             .then(({ data }) => {
                 console.log("logout");
                 setTimeout(() => {

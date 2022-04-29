@@ -28,14 +28,12 @@ export const EditEntry = ({ editPost, setIsCreated }) => {
             setIsLoading(false)
         }
         else {
-            await axios.post(`${URL}:8000/api/edit/`, {
+            await axios.post(`${URL}/api/edit/`, {
                 "pk": entryId,
                 "entry": editedEntry
             })
                 .then(({ data }) => {
-                    setIsSpinning(true);
                     setTimeout(() => {
-                        setIsSpinning(false);
                         setIsCreated(true);
                         setIsLoading(false)
                         handleClose();

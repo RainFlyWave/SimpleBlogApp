@@ -24,7 +24,7 @@ export const DeleteEntry = ({ deletePost, setIsCreated }) => {
 
     const deleteEntry = async () => {
         setIsLoading(true)
-        await axios.post(`${URL}:8000/api/delete/`, {
+        await axios.post(`${URL}/api/delete/`, {
 
             "pk": entryId
 
