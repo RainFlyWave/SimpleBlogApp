@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react';
-import { Dropdown, Offcanvas, Spinner, Button, Form } from 'react-bootstrap';
+import { Dropdown, Offcanvas } from 'react-bootstrap';
 import axios from 'axios';
 import { ChangePhoto } from './ChangePhoto';
 import { EditDescription } from './EditDescription';

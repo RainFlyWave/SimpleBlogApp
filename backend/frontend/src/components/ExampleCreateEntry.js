@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FloatingLabel, Form, Button, Modal } from 'react-bootstrap';
-import axios from 'axios';
+import React from 'react';
+import { FloatingLabel, Form, Button } from 'react-bootstrap';
 
 
 export const ExampleCreateEntry = () => {
