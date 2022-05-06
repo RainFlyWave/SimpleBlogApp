@@ -16,6 +16,9 @@ import os
 
 
 
+
+
+
 class RegisterView(APIView):
 
     def post(self, request):
@@ -23,9 +26,6 @@ class RegisterView(APIView):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        user = User.objects.get(username=serializer.validated_data["username"])
-        detail_user = UserDetails(username=user)
-        detail_user.save()
         return Response(serializer.data)
 
 
