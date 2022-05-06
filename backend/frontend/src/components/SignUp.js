@@ -58,14 +58,13 @@ export const SignUp = ({ setIsAuth }) => {
                         }, 2000)
                     }).catch(error => {
                         console.error(error.response.status)
-                        if (error.response.status === 400) {
-                            setIsData('User already exists!');
-
-                        }
                         setisLoading(false);
                     });
             }).catch(error => {
                 console.error(error.response.status)
+                if (error.response.status === 400) {
+                    setIsData('User already exists!');
+                }
                 setisLoading(false);
             });
     }
