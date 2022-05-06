@@ -41,4 +41,9 @@
       -ms-flex-align: center;
           align-items: center;
 }
+
+.btn:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
 /*# sourceMappingURL=UserProfile.css.map */
