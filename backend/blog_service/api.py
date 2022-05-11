@@ -35,7 +35,7 @@ class LoginView(APIView):
         #   Get username and password from request
         username = request.data['username']
         password = request.data['password']
-
+        
         #   Filter users from django.contrib.auth.models User model
         user = User.objects.filter(username=username).first()
 

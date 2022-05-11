@@ -9,3 +9,4 @@ __pycache__/*.pyc
 *.jpg
 *.png
 backend/ssl/
+ssl_init.bat
