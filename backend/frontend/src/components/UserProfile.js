@@ -7,6 +7,7 @@ import { EditDescription } from './EditDescription';
 import { ChangeColor } from './ChangeColor';
 import { authenticate } from '../contexts/Authenticate';
 import { URL } from '../contexts/UrlVar'
+import { StatsPage } from './StatsPage';
 
 
 
@@ -92,6 +93,7 @@ export const UserProfile = ({ setIsAuth }) => {
                             <div>Description: {isLoading || userData.user_description}</div>
 
                         </div>
+                        <StatsPage chartColor={profileColor} />
                     </div>
 
                 </Offcanvas.Body>

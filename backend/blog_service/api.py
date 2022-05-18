@@ -247,8 +247,10 @@ class UserDetailsGraph(APIView):
         month_ago = (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%m-%d-%Y')
 
         idx = pd.date_range(month_ago, today)
-        s = pd.Series(basic_dict)
-        s.index = pd.DatetimeIndex(s.index)
-        s = s.reindex(idx, fill_value=0)
-
-        return Response({'axisX': [s.index], 'axisY: []': [s]})
+        series = pd.Series(basic_dict)
+        series.index = pd.DatetimeIndex(series.index)
+        amount_of_entries = series.reindex(idx, fill_value=0)
+        date_of_entry = [str(i)[:10] for i in amount_of_entries.index]
+        import time
+        # time.sleep(3)
+        return Response({'axisX': date_of_entry, 'axisY': amount_of_entries})
