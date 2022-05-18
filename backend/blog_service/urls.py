@@ -1,3 +1,4 @@
+from blog_service.api import UserDetailsGraph
 from blog_service.api import RegisterView, LoginView, UserView, LogoutView, EntriesView,UserDescriptionView, CreateEntryView, DeleteEntryView, EditEntryView, UploadPhotoView
 from django.urls import path, include
 from rest_framework import routers
@@ -21,6 +22,7 @@ urlpatterns = [
     path('edit/',EditEntryView.as_view()),
     path('upload/', UploadPhotoView.as_view()),
     path('details/', UserDescriptionView.as_view()),
+    path('userdetails/', UserDetailsGraph.as_view()),
 
 
 ]

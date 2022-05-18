@@ -40,7 +40,6 @@ export const LoggedIn = ({ setIsAuth }) => {
 
     useEffect(() => {
         fetchData();
-
     }, [isCreated])
 
     if (isLoading) {

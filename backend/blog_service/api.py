@@ -13,10 +13,18 @@ from blog_service.models import Entry, EntryStats
 import jwt
 import datetime
 import os
+import pandas as pd
 
 
 
-
+def token_decode(token):
+    if not token:
+        raise AuthenticationFailed('Unauthenticated access')
+    try:
+        payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
+        return payload
+    except jwt.ExpiredSignatureError:
+        raise AuthenticationFailed('Unauthenticated access')
 
 
 class RegisterView(APIView):
@@ -74,14 +82,7 @@ class UserView(APIView):
         token = request.COOKIES.get('token')
 
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
@@ -117,15 +118,7 @@ class EntriesView(ListAPIView):
          #   Get a token cookie from cookies
         token = self.request.COOKIES.get('token')
 
-        #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
         #   If everything is allright, send appropriate response
         user = User.objects.get(id=payload['id'])
@@ -137,14 +130,7 @@ class CreateEntryView(APIView):
          #   Get a token cookie from cookies
         token = request.COOKIES.get('token')
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
         # variable that stores current User object
         user = User.objects.get(id=payload['id'])
@@ -183,33 +169,18 @@ class DeleteEntryView(APIView):
     def post(self, request):
         token = request.COOKIES.get('token')
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
         #   If everything is allright, send appropriate response
         entry = Entry.objects.get(pk=request.data['pk'])
         entry.delete()
-        
         return Response({"response": "Entry deleted successfully"})
 
 class EditEntryView(APIView):
     def post(self, request):
         token = request.COOKIES.get('token')
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
         #   If everything is allright, send appropriate response
         entry = Entry.objects.get(pk=request.data['pk'])
@@ -223,14 +194,7 @@ class UploadPhotoView(APIView):
     def post(self,request):
         token = request.COOKIES.get('token')
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
 
        
         
@@ -248,14 +212,7 @@ class UserDescriptionView(APIView):
     def post(self,request):
         token = request.COOKIES.get('token')
         #   Send a message if token doesnt exist
-        if not token:
-            raise AuthenticationFailed('Unauthenticated access')
-
-        #   Try to decode existing token, and check if valid
-        try:
-            payload = jwt.decode(token, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated access')
+        payload = token_decode(token)
         
         #   If everything is allright, send appropriate response
         
@@ -275,3 +232,23 @@ class UserDescriptionView(APIView):
 
         return Response({"response": "Description updated successfully"})
 
+
+class UserDetailsGraph(APIView):
+    def post(self, request):
+        token = request.COOKIES.get('token')
+        payload = token_decode(token)
+        user = User.objects.get(id=payload['id'])
+        userdetails = EntryStats.objects.filter(entry_author_name=user)
+
+        basic_dict = {}
+        for i in userdetails:
+            basic_dict[i.entry_date_created.strftime('%m-%d-%Y')] = i.entry_amount
+        today = datetime.datetime.now().strftime('%m-%d-%Y')
+        month_ago = (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%m-%d-%Y')
+
+        idx = pd.date_range(month_ago, today)
+        s = pd.Series(basic_dict)
+        s.index = pd.DatetimeIndex(s.index)
+        s = s.reindex(idx, fill_value=0)
+
+        return Response({'axisX': [s.index], 'axisY: []': [s]})
